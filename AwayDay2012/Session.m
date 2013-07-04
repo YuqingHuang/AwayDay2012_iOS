@@ -46,8 +46,6 @@
     if([note isEqual:[NSNull null]])note=@"";
     [session setSessionNote:note];
     [session setSessionAddress:[sessionProperies objectForKey:@"session_location"]];
-    [session autorelease];
-    [dateFormatter2 release];
     return session;
 }
 

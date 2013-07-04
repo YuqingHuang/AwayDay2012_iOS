@@ -51,7 +51,7 @@ const int RedirectionLimit = 5;
 static NSTimeInterval defaultTimeOutSeconds = 10;
 
 static void ReadStreamClientCallBack(CFReadStreamRef readStream, CFStreamEventType type, void *clientCallBackInfo) {
-    [((ASIHTTPRequest*)clientCallBackInfo) handleNetworkEvent: type];
+    [((__bridge ASIHTTPRequest*)clientCallBackInfo) handleNetworkEvent: type];
 }
 
 // This lock prevents the operation from being cancelled while it is trying to update the progress, and vice versa
@@ -939,7 +939,7 @@ static NSOperationQueue *sharedQueue = nil;
 		
 		NSString *header;
 		for (header in [self requestHeaders]) {
-			CFHTTPMessageSetHeaderFieldValue(request, (CFStringRef)header, (CFStringRef)[[self requestHeaders] objectForKey:header]);
+			CFHTTPMessageSetHeaderFieldValue(request, (__bridge CFStringRef)header, (CFStringRef)[[self requestHeaders] objectForKey:header]);
 		}
 
 		// If we immediately have access to proxy settings, start the request
@@ -1223,7 +1223,7 @@ static NSOperationQueue *sharedQueue = nil;
 			NSMutableArray *certificates = [NSMutableArray arrayWithCapacity:[clientCertificates count]+1];
 
 			// The first object in the array is our SecIdentityRef
-			[certificates addObject:(id)clientCertificateIdentity];
+			[certificates addObject:(__bridge id)clientCertificateIdentity];
 
 			// If we've added any additional certificates, add them too
 			for (id cert in clientCertificates) {
@@ -1232,7 +1232,7 @@ static NSOperationQueue *sharedQueue = nil;
             
             [sslProperties setObject:certificates forKey:(NSString *)kCFStreamSSLCertificates];
             
-            CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertySSLSettings, sslProperties);
+            CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertySSLSettings, (__bridge CFTypeRef)(sslProperties));
         }
         
     }
@@ -1263,9 +1263,9 @@ static NSOperationQueue *sharedQueue = nil;
 		NSMutableDictionary *proxyToUse = [NSMutableDictionary dictionaryWithObjectsAndKeys:[self proxyHost],hostKey,[NSNumber numberWithInt:[self proxyPort]],portKey,nil];
 
 		if ([[self proxyType] isEqualToString:(NSString *)kCFProxyTypeSOCKS]) {
-			CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertySOCKSProxy, proxyToUse);
+			CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)(proxyToUse));
 		} else {
-			CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertyHTTPProxy, proxyToUse);
+			CFReadStreamSetProperty((CFReadStreamRef)[self readStream], kCFStreamPropertyHTTPProxy, (__bridge CFTypeRef)(proxyToUse));
 		}
 	}
 
@@ -1886,10 +1886,6 @@ static NSOperationQueue *sharedQueue = nil;
     if (*target && [*target respondsToSelector:[invocation selector]]) {
         [invocation invokeWithTarget:*target];
     }
-	CFRelease(invocation);
-	if (objectToRelease) {
-		CFRelease(objectToRelease);
-	}
 }
 	
 	
@@ -2392,7 +2388,7 @@ static NSOperationQueue *sharedQueue = nil;
 	if (newCredentials && proxyAuthentication && request) {
 
 		// Apply whatever credentials we've built up to the old request
-		if (CFHTTPMessageApplyCredentialDictionary(request, proxyAuthentication, (CFMutableDictionaryRef)newCredentials, NULL)) {
+		if (CFHTTPMessageApplyCredentialDictionary(request, proxyAuthentication, (__bridge CFMutableDictionaryRef)newCredentials, NULL)) {
 			
 			//If we have credentials and they're ok, let's save them to the keychain
 			if (useKeychainPersistence) {
@@ -2400,7 +2396,7 @@ static NSOperationQueue *sharedQueue = nil;
 			}
 			if (useSessionPersistence) {
 				NSMutableDictionary *sessionProxyCredentials = [NSMutableDictionary dictionary];
-				[sessionProxyCredentials setObject:(id)proxyAuthentication forKey:@"Authentication"];
+				[sessionProxyCredentials setObject:(__bridge id)proxyAuthentication forKey:@"Authentication"];
 				[sessionProxyCredentials setObject:newCredentials forKey:@"Credentials"];
 				[sessionProxyCredentials setObject:[self proxyHost] forKey:@"Host"];
 				[sessionProxyCredentials setObject:[NSNumber numberWithInt:[self proxyPort]] forKey:@"Port"];
@@ -2422,7 +2418,7 @@ static NSOperationQueue *sharedQueue = nil;
 	
 	if (newCredentials && requestAuthentication && request) {
 		// Apply whatever credentials we've built up to the old request
-		if (CFHTTPMessageApplyCredentialDictionary(request, requestAuthentication, (CFMutableDictionaryRef)newCredentials, NULL)) {
+		if (CFHTTPMessageApplyCredentialDictionary(request, requestAuthentication, (__bridge CFMutableDictionaryRef)newCredentials, NULL)) {
 			
 			//If we have credentials and they're ok, let's save them to the keychain
 			if (useKeychainPersistence) {
@@ -2431,7 +2427,7 @@ static NSOperationQueue *sharedQueue = nil;
 			if (useSessionPersistence) {
 				
 				NSMutableDictionary *sessionCredentials = [NSMutableDictionary dictionary];
-				[sessionCredentials setObject:(id)requestAuthentication forKey:@"Authentication"];
+				[sessionCredentials setObject:(__bridge id)requestAuthentication forKey:@"Authentication"];
 				[sessionCredentials setObject:newCredentials forKey:@"Credentials"];
 				[sessionCredentials setObject:[self url] forKey:@"URL"];
 				[sessionCredentials setObject:[self authenticationScheme] forKey:@"AuthenticationScheme"];
@@ -3827,7 +3823,7 @@ static NSOperationQueue *sharedQueue = nil;
 			NSDictionary *proxySettings = [NSMakeCollectable(SCDynamicStoreCopyProxies(NULL)) autorelease];
 #endif
 
-			proxies = [NSMakeCollectable(CFNetworkCopyProxiesForURL((CFURLRef)[self url], (CFDictionaryRef)proxySettings)) autorelease];
+			proxies = [NSMakeCollectable(CFNetworkCopyProxiesForURL((CFURLRef)[self url], (__bridge CFDictionaryRef)proxySettings)) autorelease];
 
 			// Now check to see if the proxy settings contained a PAC url, we need to run the script to get the real list of proxies if so
 			NSDictionary *settings = [proxies objectAtIndex:0];
@@ -3979,7 +3975,7 @@ static NSOperationQueue *sharedQueue = nil;
 
 		// Obtain the list of proxies by running the autoconfiguration script
 		CFErrorRef err = NULL;
-		NSArray *proxies = [NSMakeCollectable(CFNetworkCopyProxiesForAutoConfigurationScript((CFStringRef)script,(CFURLRef)[self url], &err)) autorelease];
+		NSArray *proxies = [NSMakeCollectable(CFNetworkCopyProxiesForAutoConfigurationScript((__bridge CFStringRef)script,(CFURLRef)[self url], &err)) autorelease];
 		if (!err && [proxies count] > 0) {
 			NSDictionary *settings = [proxies objectAtIndex:0];
 			[self setProxyHost:[settings objectForKey:(NSString *)kCFProxyHostNameKey]];

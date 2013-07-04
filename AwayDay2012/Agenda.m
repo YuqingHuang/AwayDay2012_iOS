@@ -39,9 +39,6 @@
         [session release];
     }
     [agenda.sessions addObjectsFromArray:sessionList];
-    [sessionList release];
-    [agenda autorelease];
-    [dateFormatter release];
     return agenda;
 }
 
