@@ -137,6 +137,7 @@
 +(NSString *)base64EncodeImage:(UIImage *)image{
     NSData *base64Data=[GTMBase64 encodeData:UIImageJPEGRepresentation(image, 0.9f)];
     NSString *base64Str=[[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
+    [base64Str autorelease];
     return base64Str;
 }
 

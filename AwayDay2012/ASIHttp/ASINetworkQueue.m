@@ -78,15 +78,15 @@
 
 - (void)setUploadProgressDelegate:(id)newDelegate
 {
-	id localUploadProgressDelegate = newDelegate;
-	[self resetProgressDelegate:&localUploadProgressDelegate];
+	uploadProgressDelegate = newDelegate;
+	[self resetProgressDelegate:&uploadProgressDelegate];
 
 }
 
 - (void)setDownloadProgressDelegate:(id)newDelegate
 {
-	id localDownloadProgressDelegate = newDelegate;
-	[self resetProgressDelegate:&localDownloadProgressDelegate];
+	downloadProgressDelegate = newDelegate;
+	[self resetProgressDelegate:&downloadProgressDelegate];
 }
 
 - (void)resetProgressDelegate:(id *)progressDelegate
@@ -153,8 +153,7 @@
 				[self addHEADOperation:HEADRequest];
 				[request addDependency:HEADRequest];
 				if ([request shouldResetDownloadProgress]) {
-                    id localDownloadProgressDelegate = downloadProgressDelegate;
-					[self resetProgressDelegate:&localDownloadProgressDelegate];
+					[self resetProgressDelegate:&downloadProgressDelegate];
 					[request setShouldResetDownloadProgress:NO];
 				}
 			}
@@ -169,8 +168,7 @@
 	}
 	// Tell the request not to increment the upload size when it starts, as we've already added its length
 	if ([request shouldResetUploadProgress]) {
-        id localUploadProgressDelegate = uploadProgressDelegate;
-		[self resetProgressDelegate:&localUploadProgressDelegate];
+		[self resetProgressDelegate:&uploadProgressDelegate];
 		[request setShouldResetUploadProgress:NO];
 	}
 	
@@ -237,8 +235,7 @@
 {
 	[self setBytesDownloadedSoFar:[self bytesDownloadedSoFar]+bytes];
 	if ([self downloadProgressDelegate]) {
-        id localDownloadProgressDelegate = downloadProgressDelegate;
-		[ASIHTTPRequest updateProgressIndicator:&localDownloadProgressDelegate withProgress:[self bytesDownloadedSoFar] ofTotal:[self totalBytesToDownload]];
+		[ASIHTTPRequest updateProgressIndicator:&downloadProgressDelegate withProgress:[self bytesDownloadedSoFar] ofTotal:[self totalBytesToDownload]];
 	}
 }
 
@@ -246,8 +243,7 @@
 {
 	[self setBytesUploadedSoFar:[self bytesUploadedSoFar]+bytes];
 	if ([self uploadProgressDelegate]) {
-        id localUploadProgressDelegate = uploadProgressDelegate;
-		[ASIHTTPRequest updateProgressIndicator:&localUploadProgressDelegate withProgress:[self bytesUploadedSoFar] ofTotal:[self totalBytesToUpload]];
+		[ASIHTTPRequest updateProgressIndicator:&uploadProgressDelegate withProgress:[self bytesUploadedSoFar] ofTotal:[self totalBytesToUpload]];
 	}
 }
 

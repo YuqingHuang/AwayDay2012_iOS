@@ -109,14 +109,18 @@
         Agenda *agenda=[tempAgendaMapping objectForKey:sessionDateStr];
         if(agenda==nil){
             agenda=[[Agenda alloc]init];
+            [agenda autorelease];
             [agenda setAgendaDate:session.sessionStartTime];
             
             NSMutableArray *list=[[NSMutableArray alloc]initWithCapacity:0];
             [agenda setSessions:list];
+            [list release];
         }
         [agenda.sessions addObject:session];
         [tempAgendaMapping setObject:agenda forKey:sessionDateStr];
     }
+    
+    [dateFormatter release];
     
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
     [tempAgendaMapping release];
@@ -156,6 +160,7 @@
         }
     }
     
+    [result autorelease];
     return result;
 }
 
@@ -478,6 +483,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+    [view autorelease];
     
     [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back.png"]]];
     
@@ -486,6 +492,7 @@
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     NSLocale *locale=[[NSLocale alloc]initWithLocaleIdentifier:@"en_US"];
     [dateFormatter setLocale:locale];
+    [locale release];
     [dateFormatter setDateFormat:@"d"];
     
     UILabel *monthLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 40, 24)];
@@ -494,6 +501,7 @@
     [monthLabel setFont:[UIFont systemFontOfSize:30.0f]];
     [monthLabel setText:[dateFormatter stringFromDate:agenda.agendaDate]];
     [view addSubview:monthLabel];
+    [monthLabel release];
     
     [dateFormatter setDateFormat:@"MMM, yyyy"];;
     UILabel *dateLabel=[[UILabel alloc] initWithFrame:CGRectMake(50, 15, 80, 20)];
@@ -504,6 +512,7 @@
     text=[text uppercaseString];
     [dateLabel setText:text];
     [view addSubview:dateLabel];
+    [dateLabel release];
     
     [dateFormatter release];
     
