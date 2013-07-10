@@ -12,12 +12,12 @@
 
 @interface PostShareViewController : UIViewController <UIActionSheetDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property(nonatomic, retain) Session *session;
-@property(nonatomic, retain) UIImage *userImage;
-@property(nonatomic, retain) IBOutlet UITextView *textView;
-@property(nonatomic, retain) IBOutlet UILabel *textCountLabel;
-@property(nonatomic, retain) IBOutlet UILabel *sessionTextLabel;
-@property(nonatomic, retain) IBOutlet UIImageView *imageIconView;
+@property(nonatomic, strong) Session *session;
+@property(nonatomic, strong) UIImage *userImage;
+@property(nonatomic, strong) IBOutlet UITextView *textView;
+@property(nonatomic, strong) IBOutlet UILabel *textCountLabel;
+@property(nonatomic, strong) IBOutlet UILabel *sessionTextLabel;
+@property(nonatomic, strong) IBOutlet UIImageView *imageIconView;
 
 -(IBAction)backButtonPressed:(id)sender;
 -(IBAction)sendButtonPressed:(id)sender;

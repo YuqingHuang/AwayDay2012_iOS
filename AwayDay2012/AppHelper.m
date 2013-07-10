@@ -35,7 +35,6 @@
     [back setBackgroundColor:[UIColor blackColor]];
     [back setAlpha:0.7f];
     [view addSubview:back];
-    [back release];
     
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, view.frame.size.height-40, view.frame.size.width, 30)];
     [label setBackgroundColor:[UIColor clearColor]];
@@ -44,21 +43,18 @@
     [label setTextAlignment:UITextAlignmentCenter];
     [label setText:text];
     [view addSubview:label];
-    [label release];
     
     if(withLoading){
         UIActivityIndicatorView *loading=[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [loading setCenter:CGPointMake(view.frame.size.width/2, view.frame.size.height/3)];
         [view addSubview:loading];
         [loading startAnimating];
-        [loading release];
     }else{
         [label setCenter:CGPointMake(label.center.x, view.frame.size.height-30)];
     }
     
     [parentView addSubview:view];
     
-    [view release];
 }
 
 +(void)removeInfoView:(UIView *)parentView{
@@ -137,7 +133,6 @@
 +(NSString *)base64EncodeImage:(UIImage *)image{
     NSData *base64Data=[GTMBase64 encodeData:UIImageJPEGRepresentation(image, 0.9f)];
     NSString *base64Str=[[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
-    [base64Str autorelease];
     return base64Str;
 }
 

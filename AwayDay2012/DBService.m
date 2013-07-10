@@ -51,12 +51,9 @@
         if(sessionEnd!=nil)[session setSessionEndTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionEnd]]];
         if(sessionLocation!=nil)[session setSessionAddress:[NSString stringWithUTF8String:sessionLocation]];
         
-        [result addObject:session];
-        [session release];
+        [result addObject:session];     
     }
-    [formatter release];
     if(stmt)sqlite3_finalize(stmt);
-    [result autorelease];
     return result;
 }
 
@@ -91,7 +88,6 @@
     if(list==nil || list.count==0) return nil;
     
     NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
-    [result autorelease];
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSString *sql=@"select * from session_list where session_id in (";
     for(NSString *sid in list){
@@ -125,9 +121,7 @@
         if(sessionLocation!=nil)[session setSessionAddress:[NSString stringWithUTF8String:sessionLocation]];
         
         [result addObject:session];
-        [session release];
     }
-    [formatter release];
     if(stmt)sqlite3_finalize(stmt);
     return result;
 }
@@ -167,10 +161,8 @@
         [reminder setSessionID:[NSString stringWithUTF8String:sessionID]];
         [reminder setReminderMinute:[NSNumber numberWithInt:reminderMin]];
         [result addObject:reminder];
-        [reminder release];
     }
     if(stmt)sqlite3_finalize(stmt);
-    [result autorelease];
     return result;
 }
 
@@ -185,7 +177,6 @@
         int reminderMin=sqlite3_column_int(stmt, 2);
         
         result=[[Reminder alloc]init];
-        [result autorelease];
         [result setSessionID:[NSString stringWithUTF8String:sessionID]];
         [result setReminderMinute:[NSNumber numberWithInt:reminderMin]];
     }
@@ -203,7 +194,6 @@
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSString *save=[NSString stringWithFormat:@"insert into user_path(path_id, path_content, create_time, has_image) values('%@','%@','%@', %d)",path.pathID, content, [formatter stringFromDate:[NSDate date]], path.hasImage.intValue];
-    [formatter release];
     
     sqlite3_stmt *stmt;
     
@@ -214,7 +204,6 @@
 }
 +(NSMutableArray *)getAllUserPath{
     NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
-    [result autorelease];
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSString *sql=@"select * from user_path order by id desc";
     
@@ -237,9 +226,7 @@
         [path setHasImage:[NSNumber numberWithInt:hasImage]];
         
         [result addObject:path];
-        [path release];
     }
-    [formatter release];
     if(stmt) sqlite3_finalize(stmt);
     return result;
 }

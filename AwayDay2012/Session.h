@@ -11,13 +11,13 @@
 
 @interface Session : NSObject
 
-@property(nonatomic, retain) NSString *sessionID;
-@property(nonatomic, retain) NSString *sessionTitle;
-@property(nonatomic, retain) NSString *sessionNote;
-@property(nonatomic, retain) NSString *sessionSpeaker;
-@property(nonatomic, retain) NSDate *sessionStartTime;
-@property(nonatomic, retain) NSDate *sessionEndTime;
-@property(nonatomic, retain) NSString *sessionAddress;
+@property(nonatomic, strong) NSString *sessionID;
+@property(nonatomic, strong) NSString *sessionTitle;
+@property(nonatomic, strong) NSString *sessionNote;
+@property(nonatomic, strong) NSString *sessionSpeaker;
+@property(nonatomic, strong) NSDate *sessionStartTime;
+@property(nonatomic, strong) NSDate *sessionEndTime;
+@property(nonatomic, strong) NSString *sessionAddress;
 
 -(Session *)createSession:(NSDictionary *)sessionProperies;
 

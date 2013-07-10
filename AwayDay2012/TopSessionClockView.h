@@ -10,6 +10,6 @@
 
 @interface TopSessionClockView : UIView
 
-@property(nonatomic, retain) NSNumber *restMinutes;
+@property(nonatomic, strong) NSNumber *restMinutes;
 
 @end

@@ -63,7 +63,6 @@
     if(content.length==0 && self.userImage==nil){
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Input something please" message:@"you need to input something or put a photo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return;
     }
     
@@ -80,7 +79,6 @@
     }
     [userPath save];
     [self postUserPath2Server:userPath];
-    [userPath release];
     
     [self.textView resignFirstResponder];
     [AppHelper showInfoView:self.view];
@@ -95,7 +93,6 @@
     [actionSheet setDestructiveButtonIndex:0];
     [actionSheet setCancelButtonIndex:actionSheet.numberOfButtons-1];
     [actionSheet showInView:self.view];
-    [actionSheet release];
 }
 
 #pragma mark - UIActionSheet delegate
@@ -114,7 +111,6 @@
         [picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
     }
     [self presentModalViewController:picker animated:YES];
-    [picker release];
 }
 
 #pragma mark - UITextView delegate
@@ -178,11 +174,9 @@
     [param setObject:self.textView.text forKey:kShareTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
     [param setObject:timestamp forKey:kTimastampKey];
-    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
-    NSString *paramString=[jsonWriter stringWithObject:param];
-    [jsonWriter release];
-    [param release];
-    
+//    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString;//here=[jsonWriter stringWithObject:param];
+
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserShare]];
     [req setRequestMethod:@"POST"];
     [req addRequestHeader:@"Content-Type" value:@"application/json"];
@@ -205,11 +199,9 @@
     [param setObject:userPath.pathContent forKey:kPathTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
     [param setObject:userPath.pathID forKey:kTimastampKey];
-    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
-    NSString *paramString=[jsonWriter stringWithObject:param];
-    [jsonWriter release];
-    [param release];
-    
+//    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString;//here=[jsonWriter stringWithObject:param];
+
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
     [req setRequestMethod:@"POST"];
     [req addRequestHeader:@"Content-Type" value:@"application/json"];
@@ -245,12 +237,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_session release];
-    [_textView release];
-    [_textCountLabel release];
-    [_imageIconView release];
-    [_userImage release];
-    [_sessionTextLabel release];
 }
 
 @end

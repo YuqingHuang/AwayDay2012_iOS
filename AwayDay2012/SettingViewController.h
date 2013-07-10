@@ -12,7 +12,7 @@
 
 @interface SettingViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet UITextField *userNameField;
+@property (nonatomic, strong) IBOutlet UITextField *userNameField;
 
 -(IBAction)saveButtonPressed:(id)sender;
 -(IBAction)handleTap:(UITapGestureRecognizer *)sender;

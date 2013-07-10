@@ -17,25 +17,24 @@
 #import "EGORefreshTableHeaderView.h"
 #import "InputNameViewController.h"
 #import "PostShareViewController.h"
-#import "SBJson.h"
 #import "Reminder.h"
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate>{
     BOOL loading;
 }
 
-@property(nonatomic, retain) NSMutableArray *agendaList;
-@property(nonatomic, retain) NSMutableArray *reminderList;
-@property(nonatomic, retain) IBOutlet UILabel *topSessionTitleLabel;
-@property(nonatomic, retain) IBOutlet UILabel *topSessionDurationLabel;
-@property(nonatomic, retain) IBOutlet UITableView *agendaTable;
-@property(nonatomic, retain) NSIndexPath *selectedCell;
-@property(nonatomic, retain) ReminderViewController *reminderViewController;
-@property(nonatomic, retain) IBOutlet TopSessionClockView *clockView;
-@property(nonatomic, retain) IBOutlet UILabel *topSessionRestTimeLabel;
-@property(nonatomic, retain) EGORefreshTableHeaderView *refreshView;
-@property(nonatomic, retain) InputNameViewController *inputNameViewController;
-@property(nonatomic, retain) PostShareViewController *postShareViewController;
+@property(nonatomic, strong) NSMutableArray *agendaList;
+@property(nonatomic, strong) NSMutableArray *reminderList;
+@property(nonatomic, strong) IBOutlet UILabel *topSessionTitleLabel;
+@property(nonatomic, strong) IBOutlet UILabel *topSessionDurationLabel;
+@property(nonatomic, strong) IBOutlet UITableView *agendaTable;
+@property(nonatomic, strong) NSIndexPath *selectedCell;
+@property(nonatomic, strong) ReminderViewController *reminderViewController;
+@property(nonatomic, strong) IBOutlet TopSessionClockView *clockView;
+@property(nonatomic, strong) IBOutlet UILabel *topSessionRestTimeLabel;
+@property(nonatomic, strong) EGORefreshTableHeaderView *refreshView;
+@property(nonatomic, strong) InputNameViewController *inputNameViewController;
+@property(nonatomic, strong) PostShareViewController *postShareViewController;
 
 /**
  load the agenda list and their sessions

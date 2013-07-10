@@ -10,8 +10,8 @@
 
 @interface SessionAddress : NSObject
 
-@property(nonatomic, retain) NSString *address;
-@property(nonatomic, retain) NSNumber *latitude;
-@property(nonatomic, retain) NSNumber *longitude;
+@property(nonatomic, strong) NSString *address;
+@property(nonatomic, strong) NSNumber *latitude;
+@property(nonatomic, strong) NSNumber *longitude;
 
 @end

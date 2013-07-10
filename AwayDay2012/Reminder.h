@@ -10,8 +10,8 @@
 
 @interface Reminder : NSObject
 
-@property(nonatomic, retain) NSString *sessionID;
-@property(nonatomic, retain) NSNumber *reminderMinute;
+@property(nonatomic, strong) NSString *sessionID;
+@property(nonatomic, strong) NSNumber *reminderMinute;
 
 -(void)save;
 -(void)drop;

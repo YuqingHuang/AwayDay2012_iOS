@@ -17,16 +17,6 @@
 @synthesize sessionSpeaker=_sessionSpeaker;
 @synthesize sessionAddress=_sessionAddress;
 
--(void)dealloc{
-    [_sessionID release];
-    [_sessionNote release];
-    [_sessionSpeaker release];
-    [_sessionStartTime release];
-    [_sessionEndTime release];
-    [_sessionTitle release];
-    [_sessionAddress release];
-    [super dealloc];
-}
 
 -(Session *)createSession:(NSDictionary *)sessionProperies{
     NSDateFormatter *dateFormatter2=[[NSDateFormatter alloc]init];
@@ -46,8 +36,6 @@
     if([note isEqual:[NSNull null]])note=@"";
     [session setSessionNote:note];
     [session setSessionAddress:[sessionProperies objectForKey:@"session_location"]];
-    [session autorelease];
-    [dateFormatter2 release];
     return session;
 }
 

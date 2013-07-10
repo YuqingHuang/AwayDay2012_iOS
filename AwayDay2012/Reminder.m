@@ -28,10 +28,5 @@
     return [DBService getReminderBySessionID:sid];
 }
 
--(void)dealloc{
-    [_sessionID release];
-    [_reminderMinute release];
-    [super dealloc];
-}
 
 @end

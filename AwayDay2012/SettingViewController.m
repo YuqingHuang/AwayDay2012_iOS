@@ -52,7 +52,6 @@
     if(self.userNameField.text.length==0){
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Name is blank" message:@"Please input your name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return;
     }
     
@@ -71,7 +70,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_userNameField release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

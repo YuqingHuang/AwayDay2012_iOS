@@ -10,8 +10,8 @@
 
 @interface Agenda : NSObject
 
-@property(nonatomic, retain) NSDate *agendaDate;
-@property(nonatomic, retain) NSMutableArray *sessions;
+@property(nonatomic, strong) NSDate *agendaDate;
+@property(nonatomic, strong) NSMutableArray *sessions;
 
 +(Agenda *)createAgenda:(NSDictionary *) agendaProperties;
 

@@ -27,37 +27,31 @@
     [self.tapImageView addGestureRecognizer:tap];
     [tap setNumberOfTapsRequired:1];
     [tap setNumberOfTouchesRequired:1];
-    [tap release];
     
     [self.chooseFlagImageView setFrame:CGRectMake(0, 38, 4, 43)];
     
     UISwipeGestureRecognizer *swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.view addGestureRecognizer:swipe];
-    [swipe release];
     
     swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipe];
-    [swipe release];
     
     UIImageView *agendaViewIcon=[[UIImageView alloc]initWithFrame:CGRectMake(6, 10, 16, 16)];
     [agendaViewIcon setAlpha:1.0f];
     [agendaViewIcon setImage:[UIImage imageNamed:@"agenda_view_icon.png"]];
     [self.agendaViewButton addSubview:agendaViewIcon];
-    [agendaViewIcon release];
     
     UIImageView *pathViewIcon=[[UIImageView alloc]initWithFrame:CGRectMake(6, 10, 16, 16)];
     [pathViewIcon setAlpha:0.5f];
     [pathViewIcon setImage:[UIImage imageNamed:@"path_view_icon.png"]];
     [self.pathViewButton addSubview:pathViewIcon];
-    [pathViewIcon release];
     
     UIImageView *settingViewIcon=[[UIImageView alloc]initWithFrame:CGRectMake(6, 10, 16, 16)];
     [settingViewIcon setAlpha:0.5f];
     [settingViewIcon setImage:[UIImage imageNamed:@"setting_view_icon.png"]];
     [self.settingViewButton addSubview:settingViewIcon];
-    [settingViewIcon release];
     
     [self.agendaViewButton setTitleColor:[UIColor colorWithRed:79/255.0 green:79/255.0 blue:79/255.0 alpha:1.0f] forState:UIControlStateNormal];
     [self.pathViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
@@ -157,11 +151,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_tapImageView release];
-    [_chooseFlagImageView release];
-    [_agendaViewButton release];
-    [_pathViewButton release];
-    [_settingViewButton release];
 }
 
 @end

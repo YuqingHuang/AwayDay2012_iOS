@@ -41,9 +41,5 @@
     CGContextRestoreGState(ctx);
 }
 
--(void)dealloc{
-    [super dealloc];
-    [_restMinutes release];
-}
 
 @end

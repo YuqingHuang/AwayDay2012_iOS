@@ -67,18 +67,9 @@
     if([fileManager fileExistsAtPath:documentsDir]){
         NSData *data=[[NSData alloc] initWithContentsOfFile:documentsDir];
         self.pathImage=[UIImage imageWithData:data];
-        [data release];
     }
     return self.pathImage;
 }
 
--(void)dealloc{
-    [_pathID release];
-    [_pathContent release];
-    [_pathCreateTime release];
-    [_pathImage release];
-    [_hasImage release];
-    [super dealloc];
-}
 
 @end

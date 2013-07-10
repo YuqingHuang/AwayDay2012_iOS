@@ -11,11 +11,11 @@
 
 @interface MenuViewController : UIViewController
 
-@property(nonatomic, retain) IBOutlet UIImageView *tapImageView;
-@property(nonatomic, retain) IBOutlet UIImageView *chooseFlagImageView;
-@property(nonatomic, retain) IBOutlet UIButton *agendaViewButton;
-@property(nonatomic, retain) IBOutlet UIButton *pathViewButton;
-@property(nonatomic, retain) IBOutlet UIButton *settingViewButton;
+@property(nonatomic, strong) IBOutlet UIImageView *tapImageView;
+@property(nonatomic, strong) IBOutlet UIImageView *chooseFlagImageView;
+@property(nonatomic, strong) IBOutlet UIButton *agendaViewButton;
+@property(nonatomic, strong) IBOutlet UIButton *pathViewButton;
+@property(nonatomic, strong) IBOutlet UIButton *settingViewButton;
 
 -(IBAction)agendaButtonPressed:(id)sender;
 -(IBAction)settingButtonPressed:(id)sender;

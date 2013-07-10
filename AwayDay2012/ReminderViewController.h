@@ -12,13 +12,13 @@
 
 @interface ReminderViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property(nonatomic, retain) Session *session;
-@property(nonatomic, retain) IBOutlet UIImageView *remindIconView;
-@property(nonatomic, retain) NSMutableArray *remindTimeKeyArray;
-@property(nonatomic, retain) NSMutableDictionary *remindTimeList;
-@property(nonatomic, retain) IBOutlet UILabel *remindTimeLabel;
-@property(nonatomic, retain) IBOutlet UIPickerView *timePicker;
-@property(nonatomic, retain) NSNumber *choosedTime;
+@property(nonatomic, strong) Session *session;
+@property(nonatomic, strong) IBOutlet UIImageView *remindIconView;
+@property(nonatomic, strong) NSMutableArray *remindTimeKeyArray;
+@property(nonatomic, strong) NSMutableDictionary *remindTimeList;
+@property(nonatomic, strong) IBOutlet UILabel *remindTimeLabel;
+@property(nonatomic, strong) IBOutlet UIPickerView *timePicker;
+@property(nonatomic, strong) NSNumber *choosedTime;
 
 -(IBAction)backButtonPressed:(id)sender;
 

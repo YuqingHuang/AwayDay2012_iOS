@@ -10,11 +10,11 @@
 
 @interface UserPath : NSObject
 
-@property(nonatomic, retain) NSString *pathID;
-@property(nonatomic, retain) NSString *pathContent;
-@property(nonatomic, retain) NSDate *pathCreateTime;
-@property(nonatomic, retain) UIImage *pathImage;
-@property(nonatomic, retain) NSNumber *hasImage;
+@property(nonatomic, strong) NSString *pathID;
+@property(nonatomic, strong) NSString *pathContent;
+@property(nonatomic, strong) NSDate *pathCreateTime;
+@property(nonatomic, strong) UIImage *pathImage;
+@property(nonatomic, strong) NSNumber *hasImage;
 
 -(void)save;
 -(void)drop;

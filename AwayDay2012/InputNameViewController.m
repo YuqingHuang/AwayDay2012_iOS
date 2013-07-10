@@ -44,7 +44,6 @@
     if(name.length==0){
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Please input your name" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
-        [alert release];
         return;
     }
     
@@ -61,8 +60,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_userNameField release];
-    [_cancelButton release];
 }
 
 @end

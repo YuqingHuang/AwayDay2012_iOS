@@ -11,12 +11,12 @@
 
 @interface UserPathViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, retain) NSMutableArray *pathList;
-@property(nonatomic, retain) IBOutlet UILabel *userNameLabel;
-@property(nonatomic, retain) IBOutlet UILabel *userRecordsCountLabel;
-@property(nonatomic, retain) IBOutlet UITableView *userPathTable;
-@property(nonatomic, retain) NSOperationQueue *operationQueue;
-@property(nonatomic, retain) PostShareViewController *postShareViewController;
+@property(nonatomic, strong) NSMutableArray *pathList;
+@property(nonatomic, strong) IBOutlet UILabel *userNameLabel;
+@property(nonatomic, strong) IBOutlet UILabel *userRecordsCountLabel;
+@property(nonatomic, strong) IBOutlet UITableView *userPathTable;
+@property(nonatomic, strong) NSOperationQueue *operationQueue;
+@property(nonatomic, strong) PostShareViewController *postShareViewController;
 
 -(IBAction)backButtonPressed:(id)sender;
 -(IBAction)addPathButtonPressed:(id)sender;

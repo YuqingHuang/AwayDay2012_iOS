@@ -19,7 +19,6 @@
         if(self.sessions==nil){
             NSMutableArray *array=[[NSMutableArray alloc]init];
             self.sessions=array;
-            [array release];
         }
     }
     return self;
@@ -36,19 +35,11 @@
     for(NSDictionary *sessionObject in sessions){
         Session *session = [[Session alloc] init];
         [sessionList addObject:[session createSession:sessionObject]];
-        [session release];
     }
     [agenda.sessions addObjectsFromArray:sessionList];
-    [sessionList release];
-    [agenda autorelease];
-    [dateFormatter release];
+
     return agenda;
 }
 
--(void)dealloc{
-    [_agendaDate release];
-    [_sessions release];
-    [super dealloc];
-}
 
 @end

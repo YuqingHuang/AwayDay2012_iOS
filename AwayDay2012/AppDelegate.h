@@ -17,12 +17,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property(nonatomic, retain) UINavigationController *navigationController;
-@property(nonatomic, retain) AgendaViewController *agendaViewController;
-@property(nonatomic, retain) SettingViewController *settingViewController;
-@property(nonatomic, retain) MenuViewController *menuViewController;
-@property(nonatomic, retain) UserPathViewController *userPathViewController;
-@property(nonatomic, retain) NSMutableDictionary *userState;
+@property(nonatomic, strong) UINavigationController *navigationController;
+@property(nonatomic, strong) AgendaViewController *agendaViewController;
+@property(nonatomic, strong) SettingViewController *settingViewController;
+@property(nonatomic, strong) MenuViewController *menuViewController;
+@property(nonatomic, strong) UserPathViewController *userPathViewController;
+@property(nonatomic, strong) NSMutableDictionary *userState;
 @property(nonatomic, readonly) sqlite3 *database;
 
 /**

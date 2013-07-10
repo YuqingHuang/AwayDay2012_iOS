@@ -35,13 +35,11 @@
     if(self.pathList==nil){
         NSMutableArray *list=[[NSMutableArray alloc]initWithCapacity:0];
         self.pathList=list;
-        [list release];
     }
     
     if(self.operationQueue==nil){
         NSOperationQueue *queue=[[NSOperationQueue alloc]init];
         self.operationQueue=queue;
-        [queue release];
     }
     [self.operationQueue setMaxConcurrentOperationCount:5];
 }
@@ -60,7 +58,6 @@
     if(self.postShareViewController==nil){
         PostShareViewController *psvc=[[PostShareViewController alloc]initWithNibName:@"PostShareViewController" bundle:nil];
         self.postShareViewController=psvc;
-        [psvc release];
     }
     [self.navigationController pushViewController:self.postShareViewController animated:YES];
 }
@@ -77,7 +74,6 @@
         [back setBackgroundColor:[UIColor blackColor]];
         [back setAlpha:0.7f];
         [largeImageView addSubview:back];
-        [back release];
         
         UIImageView *imageView=[[UIImageView alloc]initWithFrame:self.view.frame];
         [imageView setContentMode:UIViewContentModeScaleAspectFit];
@@ -85,16 +81,13 @@
         [imageView setUserInteractionEnabled:YES];
         [imageView setMultipleTouchEnabled:YES];
         [largeImageView addSubview:imageView];
-        [imageView release];
         
         UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTapGesture:)];
         [tap setNumberOfTapsRequired:1];
         [tap setNumberOfTouchesRequired:1];
         [largeImageView addGestureRecognizer:tap];
-        [tap release];
         
         [self.view addSubview:largeImageView];
-        [largeImageView release];
     }
 }
 
@@ -135,7 +128,6 @@
     [timeLabel setTextColor:[UIColor colorWithRed:31/255.0 green:206/255.0 blue:217/255.0 alpha:1.0f]];
     [timeLabel setFont:[UIFont boldSystemFontOfSize:16.0f]];
     [cell addSubview:timeLabel];
-    [timeLabel release];
     
     [formatter setDateFormat:@"MM-dd"];
     UILabel *dateLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 26, 50, 20)];
@@ -146,9 +138,7 @@
     [dateLabel setText:[formatter stringFromDate:path.pathCreateTime]];
     [dateLabel setFont:[UIFont boldSystemFontOfSize:12.0f]];
     [cell addSubview:dateLabel];
-    [dateLabel release];
     
-    [formatter release];
     
     UIView *seperator=[[UIView alloc]initWithFrame:CGRectMake(65, 0, 2, 70)];
     if(path.hasImage!=nil && path.hasImage.boolValue && path.pathContent!=nil && path.pathContent.length>0){
@@ -157,7 +147,6 @@
     [seperator setTag:tag_view_table_child_view];
     [seperator setBackgroundColor:[UIColor colorWithRed:186/255.0 green:233/255.0 blue:236/255.0 alpha:1.0f]];
     [cell addSubview:seperator];
-    [seperator release];
     
     int y=5;
     
@@ -170,7 +159,6 @@
         [pathContent setFont:[UIFont systemFontOfSize:14.0f]];
         [pathContent setTextColor:[UIColor blackColor]];
         [cell addSubview:pathContent];
-        [pathContent release];
         y=57;
     }
     
@@ -198,11 +186,9 @@
     
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:userPath.pathID forKey:kTimastampKey];
-    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
-    NSString *paramString=[jsonWriter stringWithObject:param];
-    [jsonWriter release];
-    [param release];
-    
+//    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString;//=[jsonWriter stringWithObject:param];
+
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
     [req setRequestMethod:@"DELETE"];
     [req addPostValue:paramString forKey:nil];
@@ -237,7 +223,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     for(UIView *view in cell.subviews){
@@ -274,13 +260,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_pathList release];
-    [_userPathTable release];
-    [_userNameLabel release];
-    [_userRecordsCountLabel release];
     [self.operationQueue cancelAllOperations];
-    [_operationQueue release];
-    [_postShareViewController release];
 }
 
 @end

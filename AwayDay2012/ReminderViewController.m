@@ -35,11 +35,9 @@
     if(self.remindTimeList==nil){
         NSMutableDictionary *array=[[NSMutableDictionary alloc]initWithCapacity:0];
         self.remindTimeList=array;
-        [array release];
         
         NSMutableArray *keyArray=[[NSMutableArray alloc]initWithCapacity:0];
         self.remindTimeKeyArray=keyArray;
-        [keyArray release];
         
         [self initRemindTimeList];
     }
@@ -152,17 +150,14 @@
     [notification setAlertBody:text];
     
     [notification setUserInfo:userInfo];
-    [userInfo release];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
-    [notification release];
     
     Reminder *reminder=[[Reminder alloc]init];
     [reminder setSessionID:self.session.sessionID];
     [reminder setReminderMinute:self.choosedTime];
     [reminder save];
-    [reminder release];
 }
 
 -(void)addReminderForSession:(NSTimer *)timer{
@@ -211,13 +206,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_session release];
-    [_remindTimeList release];
-    [_remindTimeLabel release];
-    [_choosedTime release];
-    [_timePicker release];
-    [_remindTimeKeyArray release];
-    [_remindIconView release];
 }
 
 @end

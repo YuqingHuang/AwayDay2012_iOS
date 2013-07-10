@@ -10,8 +10,8 @@
 
 @interface InputNameViewController : UIViewController
 
-@property(nonatomic, retain) IBOutlet UITextField *userNameField;
-@property(nonatomic, retain) IBOutlet UIButton *cancelButton;
+@property(nonatomic, strong) IBOutlet UITextField *userNameField;
+@property(nonatomic, strong) IBOutlet UIButton *cancelButton;
 
 -(IBAction)inputDoneButtonPressed:(id)sender;
 -(IBAction)cancelButtonPressed:(id)sender;

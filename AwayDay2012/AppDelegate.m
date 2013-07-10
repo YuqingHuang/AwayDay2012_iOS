@@ -27,20 +27,12 @@
 
 - (void)dealloc
 {
-    [_window release];
-    [_agendaViewController release];
-    [_userState release];
-    [_navigationController release];
-    [_menuViewController release];
-    [_settingViewController release];
-    [_userPathViewController release];
     sqlite3_close(database);
-    [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     
@@ -57,33 +49,27 @@
         //1st launch
         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
         self.userState=dic;
-        [dic release];
         
         NSMutableArray *userJoinList=[[NSMutableArray alloc]initWithCapacity:0];
         [self.userState setObject:userJoinList forKey:kUserJoinListKey];
-        [userJoinList release];
     }
     
     if(self.agendaViewController==nil){
         AgendaViewController *rvc=[[AgendaViewController alloc]initWithNibName:@"RootViewController" bundle:nil];
         self.agendaViewController=rvc;
-        [rvc release];
     }
     if(self.settingViewController==nil){
         SettingViewController *svc=[[SettingViewController alloc]initWithNibName:@"SettingViewController" bundle:nil];
         self.settingViewController=svc;
-        [svc release];
     }
     if(self.userPathViewController==nil){
         UserPathViewController *uavc=[[UserPathViewController alloc]initWithNibName:@"UserPathViewController" bundle:nil];
         self.userPathViewController=uavc;
-        [uavc release];
     }
     
     if(self.navigationController==nil){
         UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:self.agendaViewController];
         self.navigationController=nav;
-        [nav release];
     }
     
     [self.window addSubview:self.navigationController.view];
@@ -91,7 +77,6 @@
     if(self.menuViewController==nil){
         MenuViewController *mvc=[[MenuViewController alloc]initWithNibName:@"MenuViewController" bundle:nil];
         self.menuViewController=mvc;
-        [mvc release];
     }
     [self.menuViewController.view setFrame:CGRectMake(0, 450, 320, 160)];
     [self.window addSubview:self.menuViewController.view];
