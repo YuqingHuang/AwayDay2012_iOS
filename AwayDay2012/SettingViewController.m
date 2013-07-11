@@ -49,7 +49,8 @@
 
 #pragma mark - UIAction method
 -(IBAction)saveButtonPressed:(id)sender{
-    if(self.userNameField.text.length==0){
+    NSString *inputUserName = self.userNameField.text;
+    if(inputUserName.length==0){
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Name is blank" message:@"Please input your name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         return;
@@ -57,8 +58,12 @@
     
     [self.userNameField resignFirstResponder];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [delegate.userState setObject:self.userNameField.text forKey:kUserNameKey];
+    [delegate.userState setObject:inputUserName forKey:kUserNameKey];
     [delegate saveUserState];
+    
+    if ([inputUserName isEqualToString:@"r0ys1ngh4m"]) {//extract
+    //enable edit/delete session feature.
+    }
     
     [AppHelper showInfoView:self.view withText:@"Saved!" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];

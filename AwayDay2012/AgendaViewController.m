@@ -597,11 +597,11 @@
             [self updateTopSession];
         }
 
-        loading = NO;
-        [AppHelper removeInfoView:self.view];
-
-        [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
     }
+    loading = NO;
+    [AppHelper removeInfoView:self.view];
+
+    [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
 }
 
 - (void)handleAgendaListRequestFailure:(NSError *)error {
