@@ -189,6 +189,7 @@
 //    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
     NSString *paramString;//=[jsonWriter stringWithObject:param];
 
+    //I'm here
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
     [req setRequestMethod:@"DELETE"];
     [req addPostValue:paramString forKey:nil];

@@ -14,6 +14,7 @@
 #import "ASIFormDataRequest.h"
 #import "AppConstant.h"
 #import "GTMBase64.h"
+#import "SBJsonWriter.h"
 
 #define text_length_limit   140
 #define tag_req_post_user_share 1001
@@ -174,9 +175,10 @@
     [param setObject:self.textView.text forKey:kShareTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
     [param setObject:timestamp forKey:kTimastampKey];
-//    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
-    NSString *paramString;//here=[jsonWriter stringWithObject:param];
+    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString = [jsonWriter stringWithObject:param];
 
+    //I'm here
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserShare]];
     [req setRequestMethod:@"POST"];
     [req addRequestHeader:@"Content-Type" value:@"application/json"];
@@ -199,9 +201,10 @@
     [param setObject:userPath.pathContent forKey:kPathTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
     [param setObject:userPath.pathID forKey:kTimastampKey];
-//    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
-    NSString *paramString;//here=[jsonWriter stringWithObject:param];
+    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString =[jsonWriter stringWithObject:param];
 
+    //I'm here
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
     [req setRequestMethod:@"POST"];
     [req addRequestHeader:@"Content-Type" value:@"application/json"];
