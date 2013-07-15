@@ -14,7 +14,7 @@
 #import "UserPath.h"
 #import "ASIHttpRequest.h"
 #import "DBService.h"
-#import "AFJSONRequestOperation.h"
+#import "AgendaListRetriever.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -55,7 +55,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];//user info stores in appDelegate.
     NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
     if (userName == nil || userName.length == 0) {
         //1st lauch, ask for user's name
@@ -117,26 +117,27 @@
 
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
 
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
+    [self getAgendaListFromServerWithLoading:YES];
 }
 
-- (void)getAgendaListFromServer:(NSString *)urlString showLoading:(BOOL)showLoading {
+- (void)getAgendaListFromServerWithLoading:(BOOL)showLoading {
     loading = YES;
 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    AgendaListRetriever *retriever = [[AgendaListRetriever alloc] initWithSuccessCallback:^{
 
-    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
-                                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                                   NSLog(@"success response:%@", JSON);
-                                                                                                   [self handleAgendaListRequestSuccess:JSON];
-                                                                                               }
-                                                                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                                                                   NSLog(@"fail response:%@", JSON);
-                                                                                                   [self handleAgendaListRequestFailure:error];
-                                                                                               }
-    ];
-    [requestOperation start];
+    }];
+    [retriever beginRetrieving];
+//    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
+//                                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//                                                                                                   NSLog(@"success response:%@", JSON);
+//                                                                                                   [self handleAgendaListRequestSuccess:JSON];
+//                                                                                               }
+//                                                                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+//                                                                                                   NSLog(@"fail response:%@", JSON);
+//                                                                                                   [self handleAgendaListRequestFailure:error];
+//                                                                                               }
+//    ];
+//    [requestOperation start];
 //    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 //    [request setDelegate:self];
 //    [request setTimeOutSeconds:10.0f];
@@ -572,7 +573,7 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
     loading = YES;
-    [self getAgendaListFromServer:(NSString *) kServiceLoadSessionList showLoading:YES];
+    [self getAgendaListFromServerWithLoading:YES ];
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {

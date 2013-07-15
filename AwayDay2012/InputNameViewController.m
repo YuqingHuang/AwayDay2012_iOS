@@ -50,6 +50,7 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.userState setObject:self.userNameField.text forKey:kUserNameKey];
     [appDelegate saveUserState];
+    //if Username is "...", super user
     [self dismissModalViewControllerAnimated:YES];
 }
 

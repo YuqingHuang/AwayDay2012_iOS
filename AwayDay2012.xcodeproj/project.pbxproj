@@ -17,6 +17,7 @@
 		36867FBF4B1BE9B93520C01F /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36867D47ABF6EAE2645B32D8 /* AFImageRequestOperation.m */; };
 		36867FEC347E89351575287C /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3686770DA7A10797F0737085 /* AFHTTPClient.m */; };
 		44060A50178B040200ACA13C /* AgendaListRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 44060A4F178B040200ACA13C /* AgendaListRetriever.m */; };
+		44E1E0581794458100BB3C91 /* SuperUserEntrance.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1E0571794458100BB3C91 /* SuperUserEntrance.m */; };
 		44FEFD21178DA1DB00032CAA /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD0E178DA1DB00032CAA /* SBJsonParser.m */; };
 		44FEFD22178DA1DB00032CAA /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD10178DA1DB00032CAA /* SBJsonStreamParser.m */; };
 		44FEFD23178DA1DB00032CAA /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD12178DA1DB00032CAA /* SBJsonStreamParserAccumulator.m */; };
@@ -132,6 +133,8 @@
 		36867E0CECE210304AD5EBFF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		44060A4E178B040200ACA13C /* AgendaListRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AgendaListRetriever.h; path = Handler/AgendaListRetriever.h; sourceTree = "<group>"; };
 		44060A4F178B040200ACA13C /* AgendaListRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AgendaListRetriever.m; path = Handler/AgendaListRetriever.m; sourceTree = "<group>"; };
+		44E1E0561794458100BB3C91 /* SuperUserEntrance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperUserEntrance.h; path = Handler/SuperUserEntrance.h; sourceTree = "<group>"; };
+		44E1E0571794458100BB3C91 /* SuperUserEntrance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuperUserEntrance.m; path = Handler/SuperUserEntrance.m; sourceTree = "<group>"; };
 		44FEFD0C178DA1DB00032CAA /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
 		44FEFD0D178DA1DB00032CAA /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		44FEFD0E178DA1DB00032CAA /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 			children = (
 				44060A4E178B040200ACA13C /* AgendaListRetriever.h */,
 				44060A4F178B040200ACA13C /* AgendaListRetriever.m */,
+				44E1E0561794458100BB3C91 /* SuperUserEntrance.h */,
+				44E1E0571794458100BB3C91 /* SuperUserEntrance.m */,
 			);
 			name = Handler;
 			sourceTree = "<group>";
@@ -824,6 +829,7 @@
 				36867A9BD7E2AA8404532202 /* AFURLConnectionOperation.m in Sources */,
 				368670278CB5A13136EC4A04 /* AFXMLRequestOperation.m in Sources */,
 				368677CBE88B7C95F5E5EF78 /* UIImageView+AFNetworking.m in Sources */,
+				44E1E0581794458100BB3C91 /* SuperUserEntrance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
