@@ -15,6 +15,7 @@
 #import "ASIHttpRequest.h"
 #import "DBService.h"
 #import "AgendaListRetriever.h"
+#import "AFJSONRequestOperation.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -123,21 +124,23 @@
 - (void)getAgendaListFromServerWithLoading:(BOOL)showLoading {
     loading = YES;
 
-    AgendaListRetriever *retriever = [[AgendaListRetriever alloc] initWithSuccessCallback:^{
-
-    }];
-    [retriever beginRetrieving];
-//    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
-//                                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-//                                                                                                   NSLog(@"success response:%@", JSON);
-//                                                                                                   [self handleAgendaListRequestSuccess:JSON];
-//                                                                                               }
-//                                                                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-//                                                                                                   NSLog(@"fail response:%@", JSON);
-//                                                                                                   [self handleAgendaListRequestFailure:error];
-//                                                                                               }
-//    ];
-//    [requestOperation start];
+//    AgendaListRetriever *retriever = [[AgendaListRetriever alloc] initWithSuccessCallback:^{
+//
+//    }];
+//    [retriever beginRetrieving];
+    NSURL *url = [NSURL URLWithString:(NSString *) kServiceLoadSessionList];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
+                                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                                                                                   NSLog(@"success response:%@", JSON);
+                                                                                                   [self handleAgendaListRequestSuccess:JSON];
+                                                                                               }
+                                                                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                                                                                   NSLog(@"fail response:%@", JSON);
+                                                                                                   [self handleAgendaListRequestFailure:error];
+                                                                                               }
+    ];
+    [requestOperation start];
 //    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
 //    [request setDelegate:self];
 //    [request setTimeOutSeconds:10.0f];

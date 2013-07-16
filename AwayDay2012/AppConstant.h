@@ -17,6 +17,7 @@ extern NSString *kUserJoinListKey;
 extern NSString const *kServiceLoadSessionList;
 extern NSString *kServiceUserShare;
 extern NSString *kServiceUserPath;
+extern NSString *kServiceSuperUserAuthentication;
 
 extern NSString const *kSessionIDKey;
 extern NSString const *kSessionTitleKey;
