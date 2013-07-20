@@ -11,6 +11,7 @@
 @implementation AppConstant
 
 NSString const *kUserNameKey=@"username";
+NSString const *kUserPrivilege=@"superuser";
 NSString *kUserPathImageFolder=@"user_path_image";
 NSString *kUserJoinListKey=@"user_join_list";
 
