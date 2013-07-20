@@ -118,6 +118,10 @@
 }
 
 #pragma mark - util method
++ (AppDelegate *)thisAppDelegate {
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
 /**
  save user's state to the NSUserDefault
  */

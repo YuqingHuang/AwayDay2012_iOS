@@ -25,6 +25,8 @@
 @property(nonatomic, strong) NSMutableDictionary *userState;
 @property(nonatomic, readonly) sqlite3 *database;
 
++(AppDelegate *)thisAppDelegate;
+
 /**
  save user's state to the NSUserDefault
  */
