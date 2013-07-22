@@ -74,7 +74,8 @@
 }
 
 - (void)handleSuperUserAuth:(NSDictionary *)JSON withInputName:(NSString *)inputName {
-    if ([JSON[@"result"] isEqual:@"true"]) {
+    int result = [JSON[@"result"] intValue];
+    if (result == 1) {
         //stoploading
         NSLog(@"It's a superuser.");
         [[AppDelegate thisAppDelegate].userState setObject:@"superuser" forKey:kUserPrivilege];

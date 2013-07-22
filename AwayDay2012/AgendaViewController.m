@@ -16,6 +16,7 @@
 #import "DBService.h"
 #import "AgendaListRetriever.h"
 #import "AFJSONRequestOperation.h"
+#import "EditSessionDetailViewController.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -213,7 +214,7 @@
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
-    [self.topSessionDurationLabel setText:[NSString stringWithFormat:@"%@ ~ %@", [dateFormatter stringFromDate:session.sessionStartTime], [dateFormatter stringFromDate:session.sessionEndTime]]];
+    [self.topSessionDurationLabel setText:session.sessionDuration];
 
     NSTimeInterval interval = [session.sessionStartTime timeIntervalSinceDate:today];
 
@@ -267,7 +268,7 @@
     [sessionDuration setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionDuration setShadowColor:[UIColor colorWithRed:120 / 255.0 green:120 / 255.0 blue:120 / 255.0 alpha:120 / 255.0]];
     [sessionDuration setShadowOffset:CGSizeMake(-0.1f, -0.1f)];
-    [sessionDuration setText:[NSString stringWithFormat:@"%@ ~ %@", [dateFormatter stringFromDate:session.sessionStartTime], [dateFormatter stringFromDate:session.sessionEndTime]]];
+    [sessionDuration setText:session.sessionDuration];
     [cell addSubview:sessionDuration];
 }
 
@@ -303,13 +304,11 @@
     [detailView addSubview:sessionSpeaker];
     y += sessionSpeaker.frame.size.height;
 
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
     UILabel *sessionTime = [[UILabel alloc] initWithFrame:CGRectMake(8, y, 110, 16)];
     [sessionTime setBackgroundColor:[UIColor clearColor]];
     [sessionTime setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionTime setTextColor:[UIColor colorWithRed:120 / 255.0 green:120 / 255.0 blue:120 / 255.0 alpha:1.0f]];
-    [sessionTime setText:[NSString stringWithFormat:@"Time: %@ ~ %@", [formatter stringFromDate:session.sessionStartTime], [formatter stringFromDate:session.sessionEndTime]]];
+    [sessionTime setText:[NSString stringWithFormat:@"Time: %@",session.sessionDuration]];
     [detailView addSubview:sessionTime];
 
     y += sessionTime.frame.size.height;
@@ -362,11 +361,20 @@
     [remind addTarget:self action:@selector(remindButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:remind];
 
-    UIButton *share = [UIButton buttonWithType:UIButtonTypeCustom];
-    [share setFrame:CGRectMake(234, y, 52, 32)];
-    [share setImage:[UIImage imageNamed:@"share_button.png"] forState:UIControlStateNormal];
-    [share addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [detailView addSubview:share];
+    //Superuser can edit the details, other users can share it via weibo. So, this button is different due to the kind of user.
+    if ([[AppDelegate thisUserPrivilege] isEqualToString:@"superuser"]) {
+        UIButton *edit = [UIButton buttonWithType:UIButtonTypeCustom];
+        [edit setFrame:CGRectMake(234, y, 52, 32)];
+        [edit setImage:[UIImage imageNamed:@"doc_edit_icon.png"] forState:UIControlStateNormal];
+        [edit addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [detailView addSubview:edit];
+    } else {
+        UIButton *share = [UIButton buttonWithType:UIButtonTypeCustom];
+        [share setFrame:CGRectMake(234, y, 52, 32)];
+        [share setImage:[UIImage imageNamed:@"share_button.png"] forState:UIControlStateNormal];
+        [share addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [detailView addSubview:share];
+    }
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.15f;
@@ -452,6 +460,18 @@
     Session *session = [agenda.sessions objectAtIndex:self.selectedCell.row];
     [self.postShareViewController setSession:session];
     [self.navigationController pushViewController:self.postShareViewController animated:YES];
+}
+
+- (IBAction)editButtonPressed:(id)sender {
+    if (self.editSessionDetailViewController == nil) {
+        EditSessionDetailViewController *evc = [[EditSessionDetailViewController alloc] initWithNibName:@"EditSessionDetailViewController" bundle:nil];
+        self.editSessionDetailViewController = evc;
+    }
+
+    Agenda *agenda = [self.agendaList objectAtIndex:self.selectedCell.section];
+    Session *session = [agenda.sessions objectAtIndex:self.selectedCell.row];
+    [self.editSessionDetailViewController setSession:session];
+    [self.navigationController pushViewController:self.editSessionDetailViewController animated:YES];
 }
 
 #pragma mark - UITableView method

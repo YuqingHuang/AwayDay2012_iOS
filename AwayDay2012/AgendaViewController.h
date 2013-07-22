@@ -19,6 +19,8 @@
 #import "PostShareViewController.h"
 #import "Reminder.h"
 
+@class EditSessionDetailViewController;
+
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate>{
     BOOL loading;
 }
@@ -35,6 +37,8 @@
 @property(nonatomic, strong) EGORefreshTableHeaderView *refreshView;
 @property(nonatomic, strong) InputNameViewController *inputNameViewController;
 @property(nonatomic, strong) PostShareViewController *postShareViewController;
+@property(nonatomic, strong) EditSessionDetailViewController *editSessionDetailViewController;
+
 
 /**
  load the agenda list and their sessions

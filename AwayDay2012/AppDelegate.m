@@ -122,6 +122,10 @@
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
++ (NSString *)thisUserPrivilege {
+    return [[AppDelegate thisAppDelegate].userState objectForKey:kUserPrivilege];
+}
+
 /**
  save user's state to the NSUserDefault
  */
@@ -129,6 +133,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:self.userState forKey:away_day_user_state_key];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 /*
  hide the bottom menu view
  */
