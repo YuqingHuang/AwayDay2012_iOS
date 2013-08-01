@@ -22,11 +22,11 @@
 		3686780B2C3F77F040A1E291 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 36867768849C78C9D1204A5D /* close.png */; };
 		3686794C4619352E79992BFE /* close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36867156B5C1383DC0792999 /* close@2x.png */; };
 		36867A9BD7E2AA8404532202 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36867D0C3BB98D1B8554C492 /* AFURLConnectionOperation.m */; };
-		36867B65C3730205EB688C39 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36867095EC27E05FBFC4E89D /* libWeiboSDK.a */; };
 		36867B6D9A17812751067601 /* doc_edit_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3686763635F3A56FA7F42818 /* doc_edit_icon.png */; };
 		36867FBF4B1BE9B93520C01F /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36867D47ABF6EAE2645B32D8 /* AFImageRequestOperation.m */; };
 		36867FEC347E89351575287C /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3686770DA7A10797F0737085 /* AFHTTPClient.m */; };
 		44060A50178B040200ACA13C /* AgendaListRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 44060A4F178B040200ACA13C /* AgendaListRetriever.m */; };
+		445F4CD217AAB29A00EE4BA5 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36867095EC27E05FBFC4E89D /* libWeiboSDK.a */; };
 		44E1E0581794458100BB3C91 /* SuperUserEntrance.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1E0571794458100BB3C91 /* SuperUserEntrance.m */; };
 		44FEFD21178DA1DB00032CAA /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD0E178DA1DB00032CAA /* SBJsonParser.m */; };
 		44FEFD22178DA1DB00032CAA /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD10178DA1DB00032CAA /* SBJsonStreamParser.m */; };
@@ -320,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				445F4CD217AAB29A00EE4BA5 /* libWeiboSDK.a in Frameworks */,
 				490B91E015D4B60E00539E2A /* libsqlite3.dylib in Frameworks */,
 				493697CA15C8D86400941C94 /* QuartzCore.framework in Frameworks */,
 				4969AD6615C78C8B005B6A54 /* CFNetwork.framework in Frameworks */,
@@ -330,7 +331,6 @@
 				49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */,
 				49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */,
 				49EEAC54179FC56700548645 /* libASILib.a in Frameworks */,
-				36867B65C3730205EB688C39 /* libWeiboSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1068,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/AwayDay2012\"",
 					"\"${PROJECT_DIR}/AwayDay2012/ExternalLibs/libWeiboSDK\"/**",
+					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/libWeiboSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
@@ -1094,6 +1095,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/AwayDay2012\"",
 					"\"${PROJECT_DIR}/AwayDay2012/ExternalLibs/libWeiboSDK\"/**",
+					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/libWeiboSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "E52CD57C-D397-4330-BA5A-68B8C763FD72";

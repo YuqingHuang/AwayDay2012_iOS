@@ -142,6 +142,10 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (BOOL)userAuthenticated {
+    return NO;
+}
+
 /*
  hide the bottom menu view
  */

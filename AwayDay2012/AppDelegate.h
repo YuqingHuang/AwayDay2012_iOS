@@ -39,6 +39,8 @@
  */
 - (void)hideMenuView;
 
++ (BOOL)userAuthenticated;
+
 /**
  show the bottom menu view
  */

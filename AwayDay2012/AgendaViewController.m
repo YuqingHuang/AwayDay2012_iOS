@@ -17,6 +17,7 @@
 #import "AgendaListRetriever.h"
 #import "AFJSONRequestOperation.h"
 #import "EditSessionDetailViewController.h"
+#import "WeiboSDK.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -460,6 +461,26 @@
 }
 
 - (IBAction)shareButtonPressed:(id)sender {
+    if ([AppDelegate userAuthenticated]) {
+    } else {
+        [self ssoPage];
+    }
+//    [self postToPublicPage];
+
+}
+
+- (void)ssoPage {
+    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+    request.redirectURI = kRedirectURI;
+    request.scope = @"email,direct_messages_write";
+    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
+                    @"Other_Info_1": [NSNumber numberWithInt:123],
+                    @"Other_Info_2": @[@"obj1", @"obj2"],
+                    @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    [WeiboSDK sendRequest:request];
+}
+
+- (void)postToPublicPage {
     if (self.postShareViewController == nil) {
         PostShareViewController *psvc = [[PostShareViewController alloc] initWithNibName:@"PostShareViewController" bundle:nil];
         self.postShareViewController = psvc;
@@ -691,6 +712,34 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    /*if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
+    {
+        NSString *title = @"发送结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                                                       response.statusCode, response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }*/
+    if ([response isKindOfClass:WBAuthorizeResponse.class])
+    {
+        NSString *title = @"认证结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                                                       response.statusCode, [(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken], response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end
