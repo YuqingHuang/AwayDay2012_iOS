@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7da09c0-2011-4630-b58b-51fc118b74ee" name="Default" comment="[Yuqing] correct superuser's API url, and update user state to superuser when the input name is superuser's name.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ASILib/ASILib.xcodeproj/project.xcworkspace/xcuserdata/twer.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/ASILib/ASILib.xcodeproj/project.xcworkspace/xcuserdata/twer.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/libASILib.a" afterPath="$PROJECT_DIR$/AwayDay2012/libASILib.a" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" afterPath="$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AppDelegate.m" afterPath="$PROJECT_DIR$/AwayDay2012/AppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.m" afterPath="$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.m" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.bundle/images/close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.bundle/images/close@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/libWeiboSDK.a" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/AwayDay2012.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AwayDay2012_iOS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,19 +49,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AgendaViewController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m">
+      <file leaf-file-name="WeiboSDK.h" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="34" selection-start="3095" selection-end="3095" vertical-scroll-proportion="0.01750199">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditSessionDetailViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.h">
+      <file leaf-file-name="AgendaViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="31" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+            <state line="79" column="33" selection-start="3095" selection-end="3095" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -251,54 +249,6 @@
               <option name="myItemId" value="ExternalLibs" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinaweibo_ios_sdk" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SinaWeibo" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AwayDay2012" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AwayDay2012" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExternalLibs" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sinaweibo_ios_sdk" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AwayDay2012" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AwayDay2012" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ExternalLibs" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -308,12 +258,17 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.keymap" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Image/doc_edit_icon.png" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="AwayDay2012" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/AwayDay2012/ExternalLibs" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.AwayDay2012">
     <configuration default="true" type="OCUnitRunConfiguration" factoryName="OCUnit" PROJECT_NAME="AwayDay2012" TARGET_NAME="AwayDay2012Test" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE">
@@ -385,7 +340,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24871896" sideWeight="0.6732523" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24871896" sideWeight="0.6732523" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39817628" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -494,13 +449,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="14" selection-start="4939" selection-end="4939" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Image/doc_edit_icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -595,7 +543,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="34" selection-start="3095" selection-end="3095" vertical-scroll-proportion="0.01750199">
+        <state line="79" column="33" selection-start="3095" selection-end="3095" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
