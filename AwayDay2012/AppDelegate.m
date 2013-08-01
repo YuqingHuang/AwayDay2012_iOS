@@ -46,16 +46,7 @@
 		self.userState=tmpDic;
 	}
     if(self.userState==nil){
-        //1st launch
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"1"
-                                                        message:[NSString stringWithFormat:@"1st launch"]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        [alert show];
-        
+        //1st launch            
         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
         self.userState=dic;
         
@@ -68,13 +59,6 @@
                               pathForResource:filePath ofType:@""];
         
         NSString *userName = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
-        UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"2"
-                                                        message:[NSString stringWithFormat:@"username:%@", userName]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        
-        [alert2 show];
         [self.userState setObject:userName forKey:kUserNameKey];
     }
     
