@@ -71,19 +71,19 @@
 
     Session *updateSession = [Session createSession:updateSessionDic];
 
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?username=%@", kServiceSuperUserAuthentication, inputUserName]];
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
-                                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                                   NSLog(@"success response:%@", JSON);
-                                                                                                   [self handleSuperUserAuth:JSON withInputName:inputUserName];
-                                                                                               }
-                                                                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                                                                   NSLog(@"fail response:%@", JSON);
-                                                                                                   [self handleSuperUserAuthFailure];
-                                                                                               }
-    ];
-    [requestOperation start];
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?username=%@", kServiceSuperUserAuthentication, inputUserName]];
+//    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+//    AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
+//                                                                                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//                                                                                                   NSLog(@"success response:%@", JSON);
+//                                                                                                   [self handleSuperUserAuth:JSON withInputName:inputUserName];
+//                                                                                               }
+//                                                                                               failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+//                                                                                                   NSLog(@"fail response:%@", JSON);
+//                                                                                                   [self handleSuperUserAuthFailure];
+//                                                                                               }
+//    ];
+//    [requestOperation start];
 
 
 }

@@ -35,7 +35,6 @@
 		44FEFD28178DA1DB00032CAA /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD1C178DA1DB00032CAA /* SBJsonStreamWriterAccumulator.m */; };
 		44FEFD29178DA1DB00032CAA /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD1E178DA1DB00032CAA /* SBJsonStreamWriterState.m */; };
 		44FEFD2A178DA1DB00032CAA /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FEFD20178DA1DB00032CAA /* SBJsonWriter.m */; };
-		44FEFD66178DA3E500032CAA /* libASILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44FEFD65178DA3E500032CAA /* libASILib.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		49073B4915CB774A00BB1522 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49073B4715CB774A00BB1522 /* MenuViewController.m */; };
 		49073B4A15CB774A00BB1522 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49073B4815CB774A00BB1522 /* MenuViewController.xib */; };
 		49073B4E15CB7A5900BB1522 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49073B4C15CB7A5900BB1522 /* SettingViewController.m */; };
@@ -118,6 +117,8 @@
 		49EC241A15CA2CE400DF9B34 /* join_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EC241715CA2CE400DF9B34 /* join_button.png */; };
 		49EC241B15CA2CE400DF9B34 /* reminder_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EC241815CA2CE400DF9B34 /* reminder_button.png */; };
 		49EC241C15CA2CE400DF9B34 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EC241915CA2CE400DF9B34 /* share_button.png */; };
+		49EEAC4F179FBC8500548645 /* username in Resources */ = {isa = PBXBuildFile; fileRef = 49EEAC4D179FBC7200548645 /* username */; };
+		49EEAC54179FC56700548645 /* libASILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49EEAC53179FC56700548645 /* libASILib.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,7 +178,6 @@
 		44FEFD1E178DA1DB00032CAA /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
 		44FEFD1F178DA1DB00032CAA /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		44FEFD20178DA1DB00032CAA /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		44FEFD65178DA3E500032CAA /* libASILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASILib.a; path = AwayDay2012/libASILib.a; sourceTree = "<group>"; };
 		44FEFD67178DA48000032CAA /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		44FEFD68178DA48000032CAA /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		44FEFD69178DA48000032CAA /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
@@ -304,6 +304,8 @@
 		49EC241715CA2CE400DF9B34 /* join_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join_button.png; sourceTree = "<group>"; };
 		49EC241815CA2CE400DF9B34 /* reminder_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminder_button.png; sourceTree = "<group>"; };
 		49EC241915CA2CE400DF9B34 /* share_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_button.png; sourceTree = "<group>"; };
+		49EEAC4D179FBC7200548645 /* username */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = username; sourceTree = "<group>"; };
+		49EEAC53179FC56700548645 /* libASILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASILib.a; path = AwayDay2012/libASILib.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,7 +313,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44FEFD66178DA3E500032CAA /* libASILib.a in Frameworks */,
 				490B91E015D4B60E00539E2A /* libsqlite3.dylib in Frameworks */,
 				493697CA15C8D86400941C94 /* QuartzCore.framework in Frameworks */,
 				4969AD6615C78C8B005B6A54 /* CFNetwork.framework in Frameworks */,
@@ -321,6 +322,7 @@
 				4969AD6015C78C23005B6A54 /* SystemConfiguration.framework in Frameworks */,
 				49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */,
 				49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */,
+				49EEAC54179FC56700548645 /* libASILib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +477,7 @@
 		49168F4215C769D200DEA67C = {
 			isa = PBXGroup;
 			children = (
-				44FEFD65178DA3E500032CAA /* libASILib.a */,
+				49EEAC53179FC56700548645 /* libASILib.a */,
 				492B859815EF2C0F00802F8F /* Default@2x.png */,
 				492B859515EF2C0B00802F8F /* Default.png */,
 				4968758C160455AA000BD587 /* Icon@2x.png */,
@@ -547,6 +549,7 @@
 		49168F8015C76A3A00DEA67C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				49EEAC4D179FBC7200548645 /* username */,
 				4913EB0315E4B02500C93E43 /* user_db.sqlite */,
 				49EC240315CA129000DF9B34 /* Image */,
 				49168F8715C76A6700DEA67C /* XIB */,
@@ -788,6 +791,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49EEAC4F179FBC8500548645 /* username in Resources */,
 				4913EB0515E4B03500C93E43 /* user_db.sqlite in Resources */,
 				4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */,
 				4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */,
@@ -1016,8 +1020,8 @@
 					armv7,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cyril Wei (U8A597GTFU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyril Wei (U8A597GTFU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
 				INFOPLIST_FILE = "AwayDay2012/AwayDay2012-Info.plist";
@@ -1027,8 +1031,8 @@
 					"\"$(SRCROOT)/AwayDay2012\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
+				PROVISIONING_PROFILE = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1041,8 +1045,8 @@
 					armv7,
 				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ThoughtWorks Inc";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ThoughtWorks Inc";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cyril Wei (U8A597GTFU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cyril Wei (U8A597GTFU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
 				INFOPLIST_FILE = "AwayDay2012/AwayDay2012-Info.plist";
@@ -1052,8 +1056,8 @@
 					"\"$(SRCROOT)/AwayDay2012\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
+				PROVISIONING_PROFILE = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -47,11 +47,35 @@
 	}
     if(self.userState==nil){
         //1st launch
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"1"
+                                                        message:[NSString stringWithFormat:@"1st launch"]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
+        
         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
         self.userState=dic;
         
         NSMutableArray *userJoinList=[[NSMutableArray alloc]initWithCapacity:0];
         [self.userState setObject:userJoinList forKey:kUserJoinListKey];
+
+        //check if can get the username file to set the username and priority :P
+        NSString* filePath = @"username";
+        NSString* fileRoot = [[NSBundle mainBundle]
+                              pathForResource:filePath ofType:@""];
+        
+        NSString *userName = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
+        UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"2"
+                                                        message:[NSString stringWithFormat:@"username:%@", userName]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert2 show];
+        [self.userState setObject:userName forKey:kUserNameKey];
     }
     
     if(self.agendaViewController==nil){

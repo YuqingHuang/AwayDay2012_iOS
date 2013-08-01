@@ -66,6 +66,15 @@
             self.inputNameViewController = invc;
         }
         [self presentModalViewController:self.inputNameViewController animated:NO];
+    } else {
+        //alert welcome
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WELCOME"
+                                                        message:[NSString stringWithFormat:@"Hi, %@", userName]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+
+        [alert show];
     }
 
     if (self.agendaList == nil) {
