@@ -14,6 +14,8 @@ extern NSString const *kUserNameKey;
 extern NSString const *kUserPrivilege;
 extern NSString *kUserPathImageFolder;
 extern NSString *kUserJoinListKey;
+extern NSString const *kUserWeiboIDKey;
+extern NSString const *kUserWeiboTokenKey;
 
 extern NSString const *kServiceLoadSessionList;
 extern NSString *kServiceUserShare;

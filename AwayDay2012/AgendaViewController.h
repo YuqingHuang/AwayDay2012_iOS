@@ -16,11 +16,12 @@
 #import "TopSessionClockView.h"
 #import "EGORefreshTableHeaderView.h"
 #import "InputNameViewController.h"
-#import "PostShareViewController.h"
 #import "Reminder.h"
 #import "WeiboSDK.h"
 
 @class EditSessionDetailViewController;
+
+@class PostShareViewController;
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate, WeiboSDKDelegate>{
     BOOL loading;

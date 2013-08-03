@@ -18,6 +18,7 @@
 #import "AFJSONRequestOperation.h"
 #import "EditSessionDetailViewController.h"
 #import "WeiboSDK.h"
+#import "PostShareViewController.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -124,7 +125,9 @@
             [agenda setSessions:list];
         }
         [agenda.sessions addObject:session];
-        [tempAgendaMapping setObject:agenda forKey:sessionDateStr];
+        if (sessionDateStr) {
+            [tempAgendaMapping setObject:agenda forKey:sessionDateStr];
+        }
     }
 
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
@@ -318,7 +321,7 @@
     [sessionTime setBackgroundColor:[UIColor clearColor]];
     [sessionTime setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionTime setTextColor:[UIColor colorWithRed:120 / 255.0 green:120 / 255.0 blue:120 / 255.0 alpha:1.0f]];
-    [sessionTime setText:[NSString stringWithFormat:@"Time: %@",session.sessionDuration]];
+    [sessionTime setText:[NSString stringWithFormat:@"Time: %@", session.sessionDuration]];
     [detailView addSubview:sessionTime];
 
     y += sessionTime.frame.size.height;
@@ -461,7 +464,8 @@
 }
 
 - (IBAction)shareButtonPressed:(id)sender {
-    if ([AppDelegate userAuthenticated]) {
+    if ([AppDelegate thisUserWeiboSSO]) {
+        [self postToOwnWeibo];
     } else {
         [self ssoPage];
     }
@@ -469,20 +473,33 @@
 
 }
 
+- (void)postToOwnWeibo {
+    if (self.postShareViewController == nil) {
+        PostShareViewController *psvc = [[PostShareViewController alloc] initWithNibName:@"PostShareViewController" bundle:nil];
+        self.postShareViewController = psvc;
+    }
+
+    Agenda *agenda = [self.agendaList objectAtIndex:self.selectedCell.section];
+    Session *session = [agenda.sessions objectAtIndex:self.selectedCell.row];
+    [self.postShareViewController setSession:session];
+    [self.navigationController pushViewController:self.postShareViewController animated:YES];
+}
+
 - (void)ssoPage {
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
+
     request.redirectURI = kRedirectURI;
     request.scope = @"email,direct_messages_write";
-    request.userInfo = @{@"SSO_From": @"SendMessageToWeiboViewController",
-                    @"Other_Info_1": [NSNumber numberWithInt:123],
-                    @"Other_Info_2": @[@"obj1", @"obj2"],
-                    @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+    request.userInfo = @{@"SSO_From" : @"SendMessageToWeiboViewController",
+            @"Other_Info_1" : [NSNumber numberWithInt:123],
+            @"Other_Info_2" : @[@"obj1", @"obj2"],
+            @"Other_Info_3" : @{@"key1" : @"obj1", @"key2" : @"obj2"}};
     [WeiboSDK sendRequest:request];
 }
 
 - (void)postToPublicPage {
     if (self.postShareViewController == nil) {
-        PostShareViewController *psvc = [[PostShareViewController alloc] initWithNibName:@"PostShareViewController" bundle:nil];
+        PostShareViewController_public *psvc = [[PostShareViewController_public alloc] initWithNibName:@"PostShareViewController" bundle:nil];
         self.postShareViewController = psvc;
     }
 
@@ -666,6 +683,7 @@
     [AppHelper showInfoView:self.view withText:@"Failed" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
+
 /*
 - (void)requestFinished:(ASIHTTPRequest *)request {
 //    NSLog(@"%@", request.responseString);
@@ -714,8 +732,7 @@
     [super viewDidUnload];
 }
 
-- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
-{
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
     /*if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
     {
         NSString *title = @"发送结果";
@@ -728,11 +745,16 @@
                                               otherButtonTitles:nil];
         [alert show];
     }*/
-    if ([response isKindOfClass:WBAuthorizeResponse.class])
-    {
+    if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+        if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.userState setObject:[(WBAuthorizeResponse *) response userID] forKey:kUserWeiboIDKey];
+            [appDelegate.userState setObject:[(WBAuthorizeResponse *) response accessToken] forKey:kUserWeiboTokenKey];
+            NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
+        }
         NSString *title = @"认证结果";
         NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
-                                                       response.statusCode, [(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken], response.userInfo, response.requestUserInfo];
+                                                       response.statusCode, [(WBAuthorizeResponse *) response userID], [(WBAuthorizeResponse *) response accessToken], response.userInfo, response.requestUserInfo];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                         message:message
                                                        delegate:nil

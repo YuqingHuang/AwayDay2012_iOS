@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PostShareViewController.h"
+#import "PostShareViewController_public.h"
 
 @interface UserPathViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -16,7 +16,7 @@
 @property(nonatomic, strong) IBOutlet UILabel *userRecordsCountLabel;
 @property(nonatomic, strong) IBOutlet UITableView *userPathTable;
 @property(nonatomic, strong) NSOperationQueue *operationQueue;
-@property(nonatomic, strong) PostShareViewController *postShareViewController;
+@property(nonatomic, strong) PostShareViewController_public *postShareViewController;
 
 -(IBAction)backButtonPressed:(id)sender;
 -(IBAction)addPathButtonPressed:(id)sender;

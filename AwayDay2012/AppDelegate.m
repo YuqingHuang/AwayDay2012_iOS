@@ -17,176 +17,204 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize agendaViewController=_agendaViewController;
-@synthesize userState=_userState;
-@synthesize navigationController=_navigationController;
-@synthesize menuViewController=_menuViewController;
-@synthesize settingViewController=_settingViewController;
-@synthesize userPathViewController=_userPathViewController;
+@synthesize agendaViewController = _agendaViewController;
+@synthesize userState = _userState;
+@synthesize navigationController = _navigationController;
+@synthesize menuViewController = _menuViewController;
+@synthesize settingViewController = _settingViewController;
+@synthesize userPathViewController = _userPathViewController;
 @synthesize database;
 
-- (void)dealloc
-{
+- (void)dealloc {
     sqlite3_close(database);
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:kAppKey];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-    
+
+
     [self copyDatabaseIfNeeded];
     [self openDatabase];
-    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
-    
+    [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8 * 60 * 60]];
+
     //restore user state
-    NSMutableDictionary *tmpDic=[[NSUserDefaults standardUserDefaults] objectForKey:away_day_user_state_key];
-	if(tmpDic!=nil){
-		self.userState=tmpDic;
-	}
-    if(self.userState==nil){
+    NSMutableDictionary *tmpDic = [[NSUserDefaults standardUserDefaults] objectForKey:away_day_user_state_key];
+    if (tmpDic != nil) {
+        self.userState = tmpDic;
+    }
+    if (self.userState == nil) {
         //1st launch            
-        NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
-        self.userState=dic;
-        
-        NSMutableArray *userJoinList=[[NSMutableArray alloc]initWithCapacity:0];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        self.userState = dic;
+
+        NSMutableArray *userJoinList = [[NSMutableArray alloc] initWithCapacity:0];
         [self.userState setObject:userJoinList forKey:kUserJoinListKey];
 
         //check if can get the username file to set the username and priority :P
-        NSString* filePath = @"username";
-        NSString* fileRoot = [[NSBundle mainBundle]
-                              pathForResource:filePath ofType:@""];
-        
+        NSString *filePath = @"username";
+        NSString *fileRoot = [[NSBundle mainBundle]
+                pathForResource:filePath ofType:@""];
+
         NSString *userName = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
         [self.userState setObject:userName forKey:kUserNameKey];
     }
-    
-    if(self.agendaViewController==nil){
-        AgendaViewController *rvc=[[AgendaViewController alloc]initWithNibName:@"RootViewController" bundle:nil];
-        self.agendaViewController=rvc;
+
+    if (self.agendaViewController == nil) {
+        AgendaViewController *rvc = [[AgendaViewController alloc] initWithNibName:@"RootViewController" bundle:nil];
+        self.agendaViewController = rvc;
     }
-    if(self.settingViewController==nil){
-        SettingViewController *svc=[[SettingViewController alloc]initWithNibName:@"SettingViewController" bundle:nil];
-        self.settingViewController=svc;
+    if (self.settingViewController == nil) {
+        SettingViewController *svc = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
+        self.settingViewController = svc;
     }
-    if(self.userPathViewController==nil){
-        UserPathViewController *uavc=[[UserPathViewController alloc]initWithNibName:@"UserPathViewController" bundle:nil];
-        self.userPathViewController=uavc;
+    if (self.userPathViewController == nil) {
+        UserPathViewController *uavc = [[UserPathViewController alloc] initWithNibName:@"UserPathViewController" bundle:nil];
+        self.userPathViewController = uavc;
     }
-    
-    if(self.navigationController==nil){
-        UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:self.agendaViewController];
-        self.navigationController=nav;
+
+    if (self.navigationController == nil) {
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:self.agendaViewController];
+        self.navigationController = nav;
     }
-    
+
     [self.window addSubview:self.navigationController.view];
-    
-    if(self.menuViewController==nil){
-        MenuViewController *mvc=[[MenuViewController alloc]initWithNibName:@"MenuViewController" bundle:nil];
-        self.menuViewController=mvc;
+
+    if (self.menuViewController == nil) {
+        MenuViewController *mvc = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+        self.menuViewController = mvc;
     }
     [self.menuViewController.view setFrame:CGRectMake(0, 450, 320, 160)];
     [self.window addSubview:self.menuViewController.view];
-    
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
+- (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits
-    
+
     //save user state
     [self saveUserState];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
+- (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WeiboSDK handleOpenURL:url delegate:self];
 }
 
 #pragma mark - util method
 + (AppDelegate *)thisAppDelegate {
-    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return (AppDelegate *) [[UIApplication sharedApplication] delegate];
 }
 
 + (NSString *)thisUserPrivilege {
     return [[AppDelegate thisAppDelegate].userState objectForKey:kUserPrivilege];
 }
 
++ (NSString *)thisUserWeiboSSO {
+    return [[AppDelegate thisAppDelegate].userState objectForKey:kUserWeiboTokenKey];
+}
+
 /**
  save user's state to the NSUserDefault
  */
--(void)saveUserState{
+- (void)saveUserState {
     [[NSUserDefaults standardUserDefaults] setObject:self.userState forKey:away_day_user_state_key];
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (BOOL)userAuthenticated {
-    return NO;
 }
 
 /*
  hide the bottom menu view
  */
--(void)hideMenuView{
+- (void)hideMenuView {
     [self.menuViewController.view setFrame:CGRectMake(0, 480, self.menuViewController.view.frame.size.width, self.menuViewController.view.frame.size.height)];
 }
+
 /**
  show the bottom menu view
  */
--(void)showMenuView{
+- (void)showMenuView {
     [self.menuViewController.view setFrame:CGRectMake(0, 450, self.menuViewController.view.frame.size.width, self.menuViewController.view.frame.size.height)];
 }
 
-- (NSString *) getDBPath {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
-	NSString *documentsDir = [paths objectAtIndex:0];
-	return [documentsDir stringByAppendingPathComponent:away_day_user_db_name];
+- (NSString *)getDBPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    return [documentsDir stringByAppendingPathComponent:away_day_user_db_name];
 }
 
-- (void) copyDatabaseIfNeeded {
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSError *error;
-	NSString *dbPath = [self getDBPath];
-	BOOL success = [fileManager fileExistsAtPath:dbPath];
-	if(!success) {
-		NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:away_day_user_db_name];
-		success = [fileManager copyItemAtPath:defaultDBPath toPath:dbPath error:&error];
-		
-		if (!success) {
-			NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
-		}
-	}
+- (void)copyDatabaseIfNeeded {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSString *dbPath = [self getDBPath];
+    BOOL success = [fileManager fileExistsAtPath:dbPath];
+    if (!success) {
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:away_day_user_db_name];
+        success = [fileManager copyItemAtPath:defaultDBPath toPath:dbPath error:&error];
+
+        if (!success) {
+            NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
+        }
+    }
 }
 
--(void)openDatabase{
-    NSString *databaseName=away_day_user_db_name;
-    NSArray *documentPaths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDir=[documentPaths objectAtIndex:0];
-    NSString *databasePath=[documentsDir stringByAppendingPathComponent:databaseName];
+- (void)openDatabase {
+    NSString *databaseName = away_day_user_db_name;
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDir = [documentPaths objectAtIndex:0];
+    NSString *databasePath = [documentsDir stringByAppendingPathComponent:databaseName];
 //    NSLog(@"%@", databasePath);
     sqlite3_open([databasePath UTF8String], &database);
+}
+
+#pragma weibo delegate methods
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
+    /*if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
+    {
+        NSString *title = @"发送结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                                                       response.statusCode, response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }*/
+    if ([response isKindOfClass:WBAuthorizeResponse.class]) {
+        if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
+            AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+            [appDelegate.userState setObject:[(WBAuthorizeResponse *) response userID] forKey:kUserWeiboIDKey];
+            [appDelegate.userState setObject:[(WBAuthorizeResponse *) response accessToken] forKey:kUserWeiboTokenKey];
+
+
+            NSString *title = @"认证结果";
+            NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                                                           response.statusCode, [(WBAuthorizeResponse *) response userID], [(WBAuthorizeResponse *) response accessToken], response.userInfo, response.requestUserInfo];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 @end

@@ -56,7 +56,7 @@
 }
 -(IBAction)addPathButtonPressed:(id)sender{
     if(self.postShareViewController==nil){
-        PostShareViewController *psvc=[[PostShareViewController alloc]initWithNibName:@"PostShareViewController" bundle:nil];
+        PostShareViewController_public *psvc=[[PostShareViewController_public alloc]initWithNibName:@"PostShareViewController" bundle:nil];
         self.postShareViewController=psvc;
     }
     [self.navigationController pushViewController:self.postShareViewController animated:YES];

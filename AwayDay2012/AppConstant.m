@@ -14,6 +14,8 @@ NSString const *kUserNameKey=@"username";
 NSString const *kUserPrivilege=@"superuser";
 NSString *kUserPathImageFolder=@"user_path_image";
 NSString *kUserJoinListKey=@"user_join_list";
+NSString const *kUserWeiboIDKey=@"user_weibo_ID";
+NSString const *kUserWeiboTokenKey=@"user_weibo_token_ID";
 
 NSString const *kSessionIDKey=@"session_id";
 NSString const *kSessionTitleKey=@"settion_title";

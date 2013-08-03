@@ -1,12 +1,12 @@
 //
-// Created by hyq on 8/3/13.
+//  PostShareViewController_public.m
+//  AwayDay2012
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by xuehai zeng on 12-8-8.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-
-#import "PostShareViewController.h"
-
+#import "PostShareViewController_public.h"
 #import "AppDelegate.h"
 #import "UserPath.h"
 #import "AppHelper.h"
@@ -19,7 +19,7 @@
 #define text_length_limit   140
 #define tag_req_post_user_share 1001
 
-@implementation PostShareViewController
+@implementation PostShareViewController_public
 @synthesize session=_session;
 @synthesize textView=_textView;
 @synthesize textCountLabel=_textCountLabel;
@@ -37,16 +37,16 @@
     if(self.userImage==nil){
         self.imageIconView.alpha=0.0f;
     }
-
+    
     if(self.session==nil){
         [self.sessionTextLabel setText:@""];
     }else{
         [self.sessionTextLabel setText:[NSString stringWithFormat:@"For %@", self.session.sessionTitle]];
     }
-
+    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate hideMenuView];
-
+    
     [self.textCountLabel setText:[NSString stringWithFormat:@"%d/%d", self.textView.text.length, text_length_limit]];
 }
 
@@ -66,17 +66,9 @@
         [alert show];
         return;
     }
-    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self messageToShare:content]];
-    request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
-            @"Other_Info_1": [NSNumber numberWithInt:123],
-            @"Other_Info_2": @[@"obj1", @"obj2"],
-            @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
-    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
-
-    [WeiboSDK sendRequest:request];
-/*
+    
     [self postUserShare2Server];
-
+    
     UserPath *userPath=[[UserPath alloc]init];
     [userPath setPathID:[AppHelper generateUDID]];
     [userPath setPathContent:content];
@@ -88,25 +80,10 @@
     }
     [userPath save];
     [self postUserPath2Server:userPath];
-
+    
     [self.textView resignFirstResponder];
-    [AppHelper showInfoView:self.view];*/
+    [AppHelper showInfoView:self.view];
 }
-
-- (WBMessageObject *)messageToShare:(NSString *)inputText {
-    WBMessageObject *message = [WBMessageObject message];
-
-    message.text = [NSString stringWithFormat:@"#TWAwayDay2013# %@",inputText];
-
-    if (self.userImage) {
-        WBImageObject *image = [WBImageObject object];
-        image.imageData = UIImagePNGRepresentation(self.userImage);//[NSData dataWithContentsOfFile:self.userImage];
-        message.imageObject = image;
-    }
-
-    return message;
-}
-
 -(IBAction)addImageButtonPressed:(id)sender{
     UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
@@ -122,10 +99,10 @@
 #pragma mark - UIActionSheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==actionSheet.numberOfButtons-1) return;
-
+    
     UIImagePickerController *picker=[[UIImagePickerController alloc]init];
     [picker setDelegate:self];
-
+    
     if([[actionSheet buttonTitleAtIndex:buttonIndex] rangeOfString:@"Take"].length>0){
         //take photo
         [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
@@ -189,11 +166,11 @@
     if(self.userImage!=nil){
         [param setObject:[AppHelper base64EncodeImage:self.userImage] forKey:kShareImageKey];
     }
-
+    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSTimeInterval interval=[[NSDate date] timeIntervalSince1970];
     NSString *timestamp=[NSString stringWithFormat:@"%ld", (long)interval];
-
+    
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:self.textView.text forKey:kShareTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
@@ -217,9 +194,9 @@
         //we don't need to submit path's image for now
 //        [param setObject:[AppHelper base64DecodeImage:self.userImage] forKey:kShareImageKey];
     }
-
+    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-
+    
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:userPath.pathContent forKey:kPathTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
@@ -240,14 +217,14 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request{
     NSLog(@"done response:%@", request.responseString);
-
+    
     if(request.tag==tag_req_post_user_share){
         self.userImage=nil;
         [self.textView setText:@""];
-
+        
         AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
         [appDelegate showMenuView];
-
+        
         [AppHelper removeInfoView:self.view];
         [self.navigationController popViewControllerAnimated:YES];
     }

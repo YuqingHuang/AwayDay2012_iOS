@@ -14,7 +14,7 @@
 #import "UserPathViewController.h"
 #import <sqlite3.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, WeiboSDKDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
 @property(nonatomic, strong) UINavigationController *navigationController;
@@ -32,14 +32,14 @@
 
 + (NSString *)thisUserPrivilege;
 
++ (NSString *)thisUserWeiboSSO;
+
 + (AppDelegate *)thisAppDelegate;
 
 /*
  hide the bottom menu view
  */
 - (void)hideMenuView;
-
-+ (BOOL)userAuthenticated;
 
 /**
  show the bottom menu view
