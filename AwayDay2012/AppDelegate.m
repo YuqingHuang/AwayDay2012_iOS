@@ -182,10 +182,10 @@
     sqlite3_open([databasePath UTF8String], &database);
 }
 
-#pragma weibo delegate methods
+#pragma mark weibo delegate methods
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response {
-    /*if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
+    if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
     {
         NSString *title = @"发送结果";
         NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
@@ -196,7 +196,7 @@
                                               cancelButtonTitle:@"确定"
                                               otherButtonTitles:nil];
         [alert show];
-    }*/
+    }
     if ([response isKindOfClass:WBAuthorizeResponse.class]) {
         if (response.statusCode == WeiboSDKResponseStatusCodeSuccess) {
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];

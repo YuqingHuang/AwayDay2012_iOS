@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" line="608" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" line="614" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7da09c0-2011-4630-b58b-51fc118b74ee" name="Default" comment="[Yuqing] correct superuser's API url, and update user state to superuser when the input name is superuser's name.">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AwayDay2012/libASILib-simulator.a" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AgendaViewController.h" afterPath="$PROJECT_DIR$/AwayDay2012/AgendaViewController.h" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/AwayDay2012/Handler/AgendaListRetriever.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/AwayDay2012/Handler/AgendaListRetriever.m" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" afterPath="$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AppDelegate.h" afterPath="$PROJECT_DIR$/AwayDay2012/AppDelegate.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AppDelegate.m" afterPath="$PROJECT_DIR$/AwayDay2012/AppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/AwayDay2012-Prefix.pch" afterPath="$PROJECT_DIR$/AwayDay2012/AwayDay2012-Prefix.pch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012/PostShareViewController.m" afterPath="$PROJECT_DIR$/AwayDay2012/PostShareViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AwayDay2012.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/AwayDay2012.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AwayDay2012_iOS.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375362816983" ignored="false" />
-    <file path="/a.dummy" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374456789816" ignored="false" />
-    <file path="/AgendaViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375370311369" ignored="false" />
+    <file path="/Dummy.txt" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375602199498" ignored="false" />
+    <file path="/a.dummy" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375417641245" ignored="false" />
+    <file path="/AgendaViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375601152240" ignored="false" />
     <file path="/PostShareViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1373538662412" ignored="false" />
     <file path="/AgendaListRetriever.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1373534040702" ignored="false" />
     <file path="/fragment.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374461468092" ignored="false" />
@@ -27,14 +26,32 @@
     <file path="/InputNameViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374312439054" ignored="false" />
     <file path="/AppConstant.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1373985052850" ignored="false" />
     <file path="/AppDelegate.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374309223586" ignored="false" />
-    <file path="/AppDelegate.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374311533167" ignored="false" />
-    <file path="/AgendaViewController.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375370916988" ignored="false" />
+    <file path="/AppDelegate.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375602050034" ignored="false" />
+    <file path="/AgendaViewController.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374338443881" ignored="false" />
     <file path="/EditSessionDetailViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374461623099" ignored="false" />
     <file path="/Session.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374415812161" ignored="false" />
     <file path="/Session.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1374457430192" ignored="false" />
     <file path="$USER_HOME$/Documents/Telstra/R3.1/iphone/TelstraMyAccountProduction/TelstraMyAccountProduction/Resources/en.lproj/Localizable.strings" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375264498578" ignored="false" />
-    <file path="/WeiboSDK.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375370930616" ignored="false" />
-    <file path="$PROJECT_DIR$/../../weibo/weibo_ios_sdk_sso-oauth/WeiboSDKDemo-lib/libWeiboSDK/WeiboSDK.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375370932961" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/iphone/TelstraMyAccountProduction/TelstraMyAccountProduction/My Usage/UsageSettingsTableViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375409041592" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCMyUsageViewController_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375411692457" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCMyUsageSharedDataContributionsViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375411692457" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCMyUsageSharedDataContributionsView.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375433872771" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/TCMobileServicesNetworkKit/TCMobileServicesNetworkKit/TCMobileServicesNetworkKit/model/TC_User.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375411692457" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/TCMobileServicesNetworkKit/TCMobileServicesNetworkKit/TCMobileServicesNetworkKit/handlers/MSISDNProfileDataHandler.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375411692457" ignored="false" />
+    <file path="/TCAboutView_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375414422231" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCAboutView_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375414425549" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/Resources/en.lproj/Localizable.strings" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375433872771" ignored="false" />
+    <file path="/Localizable.strings" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375417663870" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/Thanks/TCThanksViewController_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375422974609" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCApplicationConstants_Pad.h" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375422974609" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction.xcodeproj/xcshareddata/xcschemes/Meux50.xcscheme" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375428028303" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction.xcodeproj/xcshareddata/xcschemes/Meux60.xcscheme" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375428028303" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/TCMobileServicesNetworkKit/TCMobileServicesNetworkKit/TCMobileServicesNetworkKit/extensions/UIApplication+Extensions.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375433539478" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCAboutViewController_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375435491186" ignored="false" />
+    <file path="/TCAboutViewController_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375435233061" ignored="false" />
+    <file path="/UIApplication+Extensions.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375433538234" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCFindAStoreMapViewController_Pad.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375433872771" ignored="false" />
+    <file path="$USER_HOME$/Documents/Telstra/ipad/TelstraMyAccountProduction/TelstraMyAccountProduction/iPad/TCMyUsagePostPaidMobileViewController.m" changelist="d7da09c0-2011-4630-b58b-51fc118b74ee" time="1375433872771" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,57 +71,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppDelegate.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/AppDelegate.h">
+      <file leaf-file-name="UIApplication.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="24" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0">
+            <state line="187" column="19" selection-start="9239" selection-end="9239" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/main.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="247" selection-end="247" vertical-scroll-proportion="0.37864077">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AppDelegate.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AwayDay2012/AppDelegate.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="144" column="8" selection-start="5728" selection-end="5728" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AwayDay2012-Prefix.pch" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/AwayDay2012-Prefix.pch">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="36" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0">
+            <state line="200" column="123" selection-start="8423" selection-end="8423" vertical-scroll-proportion="0.029850746">
               <folding>
-                <element signature="e#256#279#0" expanded="true" />
+                <element signature="e#375#404#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfoPlist.strings" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/en.lproj/InfoPlist.strings">
+      <file leaf-file-name="PostShareViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AwayDay2012/PostShareViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AgendaViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="143" selection-start="2278" selection-end="2278" vertical-scroll-proportion="0.0">
+            <state line="27" column="91" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -113,18 +103,19 @@
       <file leaf-file-name="AgendaViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="469" column="0" selection-start="22056" selection-end="22056" vertical-scroll-proportion="0.0">
+            <state line="726" column="116" selection-start="32548" selection-end="32548" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="e#818#855#0" expanded="true" />
+                <element signature="e#153#185#0" expanded="true" />
+                <element signature="e#721#758#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WeiboSDK.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.h">
+      <file leaf-file-name="AppConstant.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AwayDay2012/AppConstant.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="8" selection-start="2026" selection-end="2026" vertical-scroll-proportion="0.0">
+            <state line="22" column="69" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -149,27 +140,26 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/AwayDay2012/ExternalLibs/AFNetworking/AFURLConnectionOperation.m" />
-        <option value="$PROJECT_DIR$/AwayDay2012/PostShareViewController.m" />
         <option value="$PROJECT_DIR$/AwayDay2012/UserPathViewController.m" />
         <option value="$PROJECT_DIR$/AwayDay2012/Handler/AgendaListRetriever.m" />
         <option value="$PROJECT_DIR$/AwayDay2012/AppConstant.h" />
         <option value="$PROJECT_DIR$/AwayDay2012/AppDelegate.h" />
         <option value="$PROJECT_DIR$/AwayDay2012/InputNameViewController.m" />
+        <option value="$PROJECT_DIR$/AwayDay2012/AgendaViewController.h" />
         <option value="$PROJECT_DIR$/AwayDay2012/Session.h" />
         <option value="$PROJECT_DIR$/AwayDay2012/Session.m" />
         <option value="$PROJECT_DIR$/AwayDay2012/AppConstant.m" />
         <option value="$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.m" />
-        <option value="$PROJECT_DIR$/AwayDay2012/AppDelegate.m" />
-        <option value="$PROJECT_DIR$/AwayDay2012/AwayDay2012-Prefix.pch" />
         <option value="$PROJECT_DIR$/AwayDay2012/AgendaViewController.m" />
-        <option value="$PROJECT_DIR$/AwayDay2012/AgendaViewController.h" />
+        <option value="$PROJECT_DIR$/AwayDay2012/PostShareViewController.m" />
+        <option value="$PROJECT_DIR$/AwayDay2012/AppDelegate.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1920" />
-    <option name="height" value="996" />
+    <option name="width" value="1276" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -233,11 +223,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resource" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemId" value="Products" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -252,6 +238,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AwayDay2012" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AwayDay2012" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AwayDay2012" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Handler" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -280,14 +284,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/AwayDay2012.xcodeproj" />
+    <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="AwayDay2012" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -295,18 +299,18 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.AwayDay2012">
-    <configuration default="false" name="AwayDay2012" type="AppleRunConfiguration" factoryName="Application" temporary="true" SCHEME_NAME="AwayDay2012" PROJECT_NAME="AwayDay2012" TARGET_NAME="AwayDay2012" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="AwayDay2012" RUN_TARGET_NAME="AwayDay2012" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-      <envs />
-      <RunnerSettings RunnerId="AppRunner" />
-      <ConfigurationWrapper RunnerId="AppRunner" />
-      <method />
-    </configuration>
     <configuration default="true" type="OCUnitRunConfiguration" factoryName="OCUnit" PROJECT_NAME="AwayDay2012" TARGET_NAME="AwayDay2012Test" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE">
       <envs />
       <method />
     </configuration>
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="AwayDay2012" TARGET_NAME="AwayDay2012" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="AwayDay2012" RUN_TARGET_NAME="AwayDay2012" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
       <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="AwayDay2012" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="AwayDay2012" PROJECT_NAME="AwayDay2012" TARGET_NAME="AwayDay2012" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="AwayDay2012" RUN_TARGET_NAME="AwayDay2012" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <RunnerSettings RunnerId="AppRunner" />
+      <ConfigurationWrapper RunnerId="AppRunner" />
       <method />
     </configuration>
     <configuration default="false" name="AwayDay2012Test" type="OCUnitRunConfiguration" factoryName="OCUnit" SCHEME_NAME="AwayDay2012Test" PROJECT_NAME="AwayDay2012" TARGET_NAME="AwayDay2012Test" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE">
@@ -317,11 +321,6 @@
       <item index="0" class="java.lang.String" itemvalue="Application.AwayDay2012" />
       <item index="1" class="java.lang.String" itemvalue="OCUnit.AwayDay2012Test" />
     </list>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.AwayDay2012" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
@@ -363,23 +362,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1920" height="996" extended-state="6" />
+    <frame x="0" y="22" width="1276" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32705098" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32674772" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32674772" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16341592" sideWeight="0.6019956" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39800444" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1811652" sideWeight="0.6732523" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39817628" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32594234" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32674772" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32674772" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -450,7 +449,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m</url>
-          <line>677</line>
+          <line>684</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
@@ -474,13 +473,8 @@
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m</url>
-          <line>465</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m</url>
-          <line>472</line>
+          <url>file://$PROJECT_DIR$/AwayDay2012/PostShareViewController.m</url>
+          <line>62</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
@@ -490,117 +484,116 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="31" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="31" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/InputNameViewController.m">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="31" selection-start="309" selection-end="309" vertical-scroll-proportion="0.017123288">
+        <state line="137" column="13" selection-start="8497" selection-end="8497" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITapGestureRecognizer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="39" selection-start="668" selection-end="668" vertical-scroll-proportion="0.25684932">
+        <state line="17" column="39" selection-start="668" selection-end="668" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIResponder.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="8" selection-start="362" selection-end="362" vertical-scroll-proportion="0.017123288">
+        <state line="18" column="8" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.m">
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/main.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="25" selection-start="2410" selection-end="2410" vertical-scroll-proportion="0.36643836">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/AppConstant.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="36" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.59931505">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSString.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="137" column="13" selection-start="8497" selection-end="8497" vertical-scroll-proportion="0.017381229">
+        <state line="15" column="0" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AwayDay2012/Session.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="72" selection-start="977" selection-end="1049" vertical-scroll-proportion="0.21232876">
+        <state line="27" column="72" selection-start="977" selection-end="1049" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/AppDelegate.h">
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/EditSessionDetailViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="24" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0">
+        <state line="75" column="25" selection-start="2410" selection-end="2410" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/en.lproj/InfoPlist.strings">
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/InputNameViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/AwayDay2012-Prefix.pch">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="36" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#256#279#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="143" selection-start="2278" selection-end="2278" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="8" selection-start="5728" selection-end="5728" vertical-scroll-proportion="0.0">
+        <state line="13" column="31" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="8" selection-start="2026" selection-end="2026" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="231" column="8" selection-start="12185" selection-end="12206" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/username">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="187" column="19" selection-start="9239" selection-end="9239" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/AppConstant.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="69" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AwayDay2012/AgendaViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="469" column="0" selection-start="22056" selection-end="22056" vertical-scroll-proportion="0.0">
+        <state line="726" column="116" selection-start="32548" selection-end="32548" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#818#855#0" expanded="true" />
+            <element signature="e#153#185#0" expanded="true" />
+            <element signature="e#721#758#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AwayDay2012/main.m">
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/PostShareViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="247" selection-end="247" vertical-scroll-proportion="0.37864077">
+        <state line="27" column="91" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AwayDay2012/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="200" column="123" selection-start="8423" selection-end="8423" vertical-scroll-proportion="0.029850746">
+          <folding>
+            <element signature="e#375#404#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

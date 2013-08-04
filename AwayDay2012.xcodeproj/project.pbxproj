@@ -26,7 +26,6 @@
 		36867B6D9A17812751067601 /* doc_edit_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3686763635F3A56FA7F42818 /* doc_edit_icon.png */; };
 		36867FBF4B1BE9B93520C01F /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36867D47ABF6EAE2645B32D8 /* AFImageRequestOperation.m */; };
 		36867FEC347E89351575287C /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3686770DA7A10797F0737085 /* AFHTTPClient.m */; };
-		44060A50178B040200ACA13C /* AgendaListRetriever.m in Sources */ = {isa = PBXBuildFile; fileRef = 44060A4F178B040200ACA13C /* AgendaListRetriever.m */; };
 		444623B517ACC7CD00C4987A /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 444623B417ACC7CD00C4987A /* WeiboSDK.bundle */; };
 		445F4CD217AAB29A00EE4BA5 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36867095EC27E05FBFC4E89D /* libWeiboSDK.a */; };
 		44E1E0581794458100BB3C91 /* SuperUserEntrance.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1E0571794458100BB3C91 /* SuperUserEntrance.m */; };
@@ -164,8 +163,6 @@
 		36867D3D4496D97105DD6AFB /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
 		36867D47ABF6EAE2645B32D8 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
 		36867E0CECE210304AD5EBFF /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
-		44060A4E178B040200ACA13C /* AgendaListRetriever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AgendaListRetriever.h; path = Handler/AgendaListRetriever.h; sourceTree = "<group>"; };
-		44060A4F178B040200ACA13C /* AgendaListRetriever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AgendaListRetriever.m; path = Handler/AgendaListRetriever.m; sourceTree = "<group>"; };
 		444623B417ACC7CD00C4987A /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WeiboSDK.bundle; path = AwayDay2012/ExternalLibs/libWeiboSDK/WeiboSDK.bundle; sourceTree = "<group>"; };
 		44E1E0561794458100BB3C91 /* SuperUserEntrance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperUserEntrance.h; path = Handler/SuperUserEntrance.h; sourceTree = "<group>"; };
 		44E1E0571794458100BB3C91 /* SuperUserEntrance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuperUserEntrance.m; path = Handler/SuperUserEntrance.m; sourceTree = "<group>"; };
@@ -432,8 +429,6 @@
 		44060A4D178B03B400ACA13C /* Handler */ = {
 			isa = PBXGroup;
 			children = (
-				44060A4E178B040200ACA13C /* AgendaListRetriever.h */,
-				44060A4F178B040200ACA13C /* AgendaListRetriever.m */,
 				44E1E0561794458100BB3C91 /* SuperUserEntrance.h */,
 				44E1E0571794458100BB3C91 /* SuperUserEntrance.m */,
 			);
@@ -943,7 +938,6 @@
 				490B91EC15D4B78B00539E2A /* DBService.m in Sources */,
 				49B99D3415D887A5009B02A8 /* Reminder.m in Sources */,
 				49A0C63215D9F9B900083B9F /* ImageService.m in Sources */,
-				44060A50178B040200ACA13C /* AgendaListRetriever.m in Sources */,
 				44FEFD21178DA1DB00032CAA /* SBJsonParser.m in Sources */,
 				44FEFD22178DA1DB00032CAA /* SBJsonStreamParser.m in Sources */,
 				44FEFD23178DA1DB00032CAA /* SBJsonStreamParserAccumulator.m in Sources */,

@@ -7,17 +7,12 @@
 //
 
 #import "AgendaViewController.h"
-#import "TopSessionClockView.h"
 #import "AppHelper.h"
 #import "AppDelegate.h"
 #import "AppConstant.h"
-#import "UserPath.h"
-#import "ASIHttpRequest.h"
 #import "DBService.h"
-#import "AgendaListRetriever.h"
 #import "AFJSONRequestOperation.h"
 #import "EditSessionDetailViewController.h"
-#import "WeiboSDK.h"
 #import "PostShareViewController.h"
 
 #define tag_cell_view_start 1001
@@ -53,31 +48,13 @@
     [self.refreshView setDelegate:self];
     [self.agendaTable addSubview:self.refreshView];
     [self.refreshView refreshLastUpdatedDate];
+
+    [self handleFirstTimeOfLaunch];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];//user info stores in appDelegate.
-    NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
-    if (userName == nil || userName.length == 0) {
-        //1st lauch, ask for user's name
-        if (self.inputNameViewController == nil) {
-            InputNameViewController *invc = [[InputNameViewController alloc] init];
-            self.inputNameViewController = invc;
-        }
-        [self presentModalViewController:self.inputNameViewController animated:NO];
-    } else {
-        //alert welcome
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WELCOME"
-                                                        message:[NSString stringWithFormat:@"Hi, %@", userName]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-
-        [alert show];
-    }
 
     if (self.agendaList == nil) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -100,6 +77,27 @@
 }
 
 #pragma mark - util method
+- (void)handleFirstTimeOfLaunch {
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];//user info stores in appDelegate.
+    NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
+    if (userName == nil || userName.length == 0) {
+        //1st lauch, ask for user's name
+        if (self.inputNameViewController == nil) {
+            InputNameViewController *inputNameViewController = [[InputNameViewController alloc] init];
+            self.inputNameViewController = inputNameViewController;
+        }
+        [self presentViewController:self.inputNameViewController animated:NO completion:nil];
+    } else {
+        //alert welcome
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WELCOME"
+                                                        message:[NSString stringWithFormat:@"Hi, %@", userName]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (void)removeInfoView {
     [AppHelper removeInfoView:self.view];
 }
@@ -138,10 +136,6 @@
 - (void)getAgendaListFromServerWithLoading:(BOOL)showLoading {
     loading = YES;
 
-//    AgendaListRetriever *retriever = [[AgendaListRetriever alloc] initWithSuccessCallback:^{
-//
-//    }];
-//    [retriever beginRetrieving];
     NSURL *url = [NSURL URLWithString:(NSString *) kServiceLoadSessionList];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
@@ -155,11 +149,6 @@
                                                                                                }
     ];
     [requestOperation start];
-//    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-//    [request setDelegate:self];
-//    [request setTimeOutSeconds:10.0f];
-//    [request setTag:tag_req_load_session_list];
-//    [request startAsynchronous];
 
     if (showLoading) {
         [AppHelper showInfoView:self.view withText:@"Loading..." withLoading:YES];
@@ -750,7 +739,6 @@
             AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
             [appDelegate.userState setObject:[(WBAuthorizeResponse *) response userID] forKey:kUserWeiboIDKey];
             [appDelegate.userState setObject:[(WBAuthorizeResponse *) response accessToken] forKey:kUserWeiboTokenKey];
-            NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
         }
         NSString *title = @"认证结果";
         NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
