@@ -23,7 +23,7 @@
 
 @class PostShareViewController;
 
-@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate, WeiboSDKDelegate>{
+@interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate>{
     BOOL loading;
 }
 
