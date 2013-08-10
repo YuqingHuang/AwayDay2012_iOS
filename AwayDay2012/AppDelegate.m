@@ -11,6 +11,10 @@
 #import "AppConstant.h"
 #import "DBService.h"
 
+#import "UAirship.h"
+#import "UAConfig.h"
+#import "UAPush.h"
+
 #define away_day_user_state_key @"away_day_2012_user_state"
 #define away_day_user_db_name   @"user_db.sqlite"
 
@@ -30,6 +34,14 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    UAConfig *config = [UAConfig defaultConfig];
+    // You can also programatically override the plist values:
+    // config.developmentAppKey = @"YourKey";
+    // etc.
+    
+    // Call takeOff (which creates the UAirship singleton)
+    [UAirship takeOff:config];
+    
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:kAppKey];
 
