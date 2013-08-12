@@ -457,7 +457,8 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
         path = @"";
     }
 
-    NSURL *url = [NSURL URLWithString:path relativeToURL:self.baseURL];
+//    NSURL *url = [NSURL URLWithString:path relativeToURL:self.baseURL];
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/2/statuses/update.json"];
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:method];
     [request setAllHTTPHeaderFields:self.defaultHeaders];
