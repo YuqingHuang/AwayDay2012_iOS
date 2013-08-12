@@ -12,7 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-#define kAppKey         @"3039931072"
-#define kRedirectURI    @"https://api.weibo.com/oauth2/default.html"
+#define kAppKey         @"2045436852"
+#define kRedirectURI    @"http://www.sina.com"
 
 #endif

@@ -79,8 +79,10 @@
     [httpClient postPath:nil parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
+        [self requestFinished:operation];
     }            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+        [self requestFailed:operation];
     }];
     /*  WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self messageToShare:content]];
       request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
@@ -259,25 +261,25 @@
     [req startAsynchronous];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request {
-    NSLog(@"done response:%@", request.responseString);
-
-    if (request.tag == tag_req_post_user_share) {
+- (void)requestFinished:(AFHTTPRequestOperation *)operation {
         self.userImage = nil;
         [self.textView setText:@""];
+    [AppHelper removeInfoView:self.view];
+    [AppHelper showInfoView:self.view withText:@"Share successfully" withLoading:NO];
+        [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         [appDelegate showMenuView];
 
-        [AppHelper removeInfoView:self.view];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+        
+    
+  
+        [NSTimer scheduledTimerWithTimeInterval:2.0f target:self.navigationController selector:@selector(popViewControllerAnimated:) userInfo:nil repeats:NO];
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request {
-    NSLog(@"fail response:%@", request.responseString);
+- (void)requestFailed:(AFHTTPRequestOperation *)operation {
     [AppHelper removeInfoView:self.view];
-    [AppHelper showInfoView:self.view withText:@"Operation Failed" withLoading:NO];
+    [AppHelper showInfoView:self.view withText:@"Share Failed" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
 
