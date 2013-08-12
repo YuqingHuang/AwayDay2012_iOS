@@ -50,6 +50,7 @@
 		49168F9A15C7764800DEA67C /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 49168F9915C7764800DEA67C /* Session.m */; };
 		492B859615EF2C0B00802F8F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 492B859515EF2C0B00802F8F /* Default.png */; };
 		492B859915EF2C0F00802F8F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492B859815EF2C0F00802F8F /* Default@2x.png */; };
+		492D43D717B8FF0B0082C814 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492D43D517B8FF0B0082C814 /* libPushSDK.a */; };
 		4934F9E115CA668600427597 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9DE15CA65CE00427597 /* EGORefreshTableHeaderView.m */; };
 		4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E215CA671700427597 /* blackArrow.png */; };
 		4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E315CA671700427597 /* blackArrow@2x.png */; };
@@ -198,6 +199,8 @@
 		49168F9915C7764800DEA67C /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
 		492B859515EF2C0B00802F8F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		492B859815EF2C0F00802F8F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		492D43D317B8FF0B0082C814 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		492D43D517B8FF0B0082C814 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		4934F9DD15CA65CE00427597 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		4934F9DE15CA65CE00427597 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		4934F9E215CA671700427597 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				4969AD6015C78C23005B6A54 /* SystemConfiguration.framework in Frameworks */,
 				49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */,
 				49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */,
+				49EEAC54179FC56700548645 /* libASILib.a in Frameworks */,
+				492D43D717B8FF0B0082C814 /* libPushSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +327,7 @@
 		44060A51178B043600ACA13C /* ExternalLibs */ = {
 			isa = PBXGroup;
 			children = (
+				492D43D217B8FF0B0082C814 /* JPush */,
 				44060A52178B04A500ACA13C /* AFNetworking */,
 			);
 			path = ExternalLibs;
@@ -525,6 +531,15 @@
 				49B99D3315D887A5009B02A8 /* Reminder.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		492D43D217B8FF0B0082C814 /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				492D43D317B8FF0B0082C814 /* APService.h */,
+				492D43D517B8FF0B0082C814 /* libPushSDK.a */,
+			);
+			path = JPush;
 			sourceTree = "<group>";
 		};
 		4969AD3E15C78BCA005B6A54 /* ASIHttp */ = {
@@ -931,6 +946,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AwayDay2012\"",
+					"\"${PROJECT_DIR}/AwayDay2012/ExternalLibs/libWeiboSDK\"/**",
+					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/libWeiboSDK\"",
+					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/JPush\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
@@ -956,6 +974,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AwayDay2012\"",
+					"\"${PROJECT_DIR}/AwayDay2012/ExternalLibs/libWeiboSDK\"/**",
+					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/libWeiboSDK\"",
+					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/JPush\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
