@@ -8,10 +8,11 @@
 
 #import "UserPathViewController.h"
 #import "AppDelegate.h"
+#import "DBService.h"
 #import "AppConstant.h"
+#import "UserPath.h"
 #import "AppHelper.h"
-#import "AFHTTPClient.h"
-#import "AFJSONRequestOperation.h"
+#import "ASIFormDataRequest.h"
 
 #define tag_view_table_child_view   10001
 #define tag_view_table_path_image   tag_view_table_child_view+1
@@ -185,20 +186,23 @@
     
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:userPath.pathID forKey:kTimastampKey];
-    NSString *paramString;
+//    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString;//=[jsonWriter stringWithObject:param];
 
-    AFHTTPClient *deleteClient = [[AFHTTPClient alloc] init];
-    NSMutableURLRequest *urlRequest = [deleteClient multipartFormRequestWithMethod:@"DELETE" path:kServiceUserShare parameters:param constructingBodyWithBlock:nil];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
-                                                                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                                            NSLog(@"done response:%@", request.URL.path);
-                                                                                        }
-                                                                                        failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                                                                            NSLog(@"fail response:%@", request.URL.path);
-                                                                                        }
-    ];
-    [operation start];
+    //I'm here
+    ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
+    [req setRequestMethod:@"DELETE"];
+    [req addPostValue:paramString forKey:nil];
+    [req setTag:tag_req_delete_path];
+    [req setDelegate:self];
+    [req startAsynchronous];
+}
 
+- (void)requestFinished:(ASIHTTPRequest *)request{
+    NSLog(@"done response:%@", request.responseString);
+}
+- (void)requestFailed:(ASIHTTPRequest *)request{
+    NSLog(@"fail response:%@", request.responseString);
 }
 
 #pragma mark - UITableView method
