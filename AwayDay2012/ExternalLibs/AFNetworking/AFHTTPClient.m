@@ -234,9 +234,9 @@ NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value) {
     }
 
     // Ensure terminal slash for baseURL path, so that NSURL +URLWithString:relativeToURL: works as expected
-    if ([[url path] length] > 0 && ![[url absoluteString] hasSuffix:@"/"]) {
-        url = [url URLByAppendingPathComponent:@""];
-    }
+//    if ([[url path] length] > 0 && ![[url absoluteString] hasSuffix:@"/"]) {
+//        url = [url URLByAppendingPathComponent:@""];
+//    }
 
     self.baseURL = url;
 
@@ -452,12 +452,14 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
                                 parameters:(NSDictionary *)parameters
 {
     NSParameterAssert(method);
-
+    NSURL *url;
     if (!path) {
         path = @"";
+        url = self.baseURL;
+    } else {
+        url = [NSURL URLWithString:path relativeToURL:self.baseURL];
     }
 
-    NSURL *url = [NSURL URLWithString:path relativeToURL:self.baseURL];
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     [request setHTTPMethod:method];
     [request setAllHTTPHeaderFields:self.defaultHeaders];

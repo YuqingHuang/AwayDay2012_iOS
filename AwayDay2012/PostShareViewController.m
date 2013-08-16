@@ -19,16 +19,17 @@
 #define text_length_limit   140
 #define tag_req_post_user_share 1001
 
-@implementation PostShareViewController
-@synthesize session=_session;
-@synthesize textView=_textView;
-@synthesize textCountLabel=_textCountLabel;
-@synthesize imageIconView=_imageIconView;
-@synthesize userImage=_userImage;
-@synthesize sessionTextLabel=_sessionTextLabel;
+@implementation PostShareViewController {
+    AppDelegate *appDelegate;
+}
+@synthesize session = _session;
+@synthesize textView = _textView;
+@synthesize textCountLabel = _textCountLabel;
+@synthesize imageIconView = _imageIconView;
+@synthesize userImage = _userImage;
+@synthesize sessionTextLabel = _sessionTextLabel;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -43,8 +44,9 @@
     }else{
         [self.sessionTextLabel setText:[NSString stringWithFormat:@"For %@", self.session.sessionTitle]];
     }
-    
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+
+
+    appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate hideMenuView];
     
     [self.textCountLabel setText:[NSString stringWithFormat:@"%d/%d", self.textView.text.length, text_length_limit]];
@@ -55,10 +57,12 @@
     self.userImage=nil;
     [self.textView setText:@""];
     [self.navigationController popViewControllerAnimated:YES];
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+
     [appDelegate showMenuView];
 }
--(IBAction)sendButtonPressed:(id)sender{
+
+- (IBAction)sendButtonPressed:(id)sender {
+    [AppHelper showInfoView:self.view];
     //to send the share
     NSString *content=self.textView.text;
     if(content.length==0 && self.userImage==nil){
@@ -66,23 +70,44 @@
         [alert show];
         return;
     }
-    
-    [self postUserShare2Server];
-    
-    UserPath *userPath=[[UserPath alloc]init];
-    [userPath setPathID:[AppHelper generateUDID]];
-    [userPath setPathContent:content];
-    if(self.userImage!=nil){
-        [userPath setPathImage:self.userImage];
-        [userPath setHasImage:[NSNumber numberWithBool:YES]];
-    }else{
-        [userPath setHasImage:[NSNumber numberWithBool:NO]];
+    NSString *accessToken = [appDelegate.userState objectForKey:kUserWeiboTokenKey];
+
+    NSURL *url;
+    NSDictionary *params;
+    WBMessageObject *messageToShare = [self messageToShare:content];
+    if (messageToShare.imageObject) {
+        url = [NSURL URLWithString:@"https://upload.api.weibo.com/2/statuses/upload.json"];
+        params = @{@"status" : messageToShare.text,
+                @"access_token" : accessToken,
+                @"pic" : messageToShare.imageObject};
+    } else {
+        url = [NSURL URLWithString:@"https://api.weibo.com/2/statuses/update.json"];
+        params = @{@"status" : messageToShare.text,
+                @"access_token" : accessToken};
     }
-    [userPath save];
-    [self postUserPath2Server:userPath];
-    
-    [self.textView resignFirstResponder];
-    [AppHelper showInfoView:self.view];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    [httpClient postPath:nil parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Request Successful, response '%@'", responseStr);
+        [self requestFinished:operation];
+    }            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+        [self requestFailed:operation];
+    }];
+}
+
+- (WBMessageObject *)messageToShare:(NSString *)inputText {
+    WBMessageObject *message = [WBMessageObject message];
+
+    message.text = [NSString stringWithFormat:@"#TWAwayDay2013# #%@# %@", self.session.sessionTitle, inputText];
+
+    if (self.userImage) {
+        WBImageObject *image = [WBImageObject object];
+        image.imageData = UIImagePNGRepresentation(self.userImage);//[NSData dataWithContentsOfFile:self.userImage];
+        message.imageObject = image;
+    }
+
+    return message;
 }
 -(IBAction)addImageButtonPressed:(id)sender{
     UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
@@ -148,10 +173,11 @@
         }
     }
     [self.imageIconView setAlpha:1.0f];
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissModalViewControllerAnimated:YES];
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - util method
@@ -166,11 +192,10 @@
     if(self.userImage!=nil){
         [param setObject:[AppHelper base64EncodeImage:self.userImage] forKey:kShareImageKey];
     }
-    
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSTimeInterval interval=[[NSDate date] timeIntervalSince1970];
-    NSString *timestamp=[NSString stringWithFormat:@"%ld", (long)interval];
-    
+
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    NSString *timestamp = [NSString stringWithFormat:@"%ld", (long) interval];
+
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:self.textView.text forKey:kShareTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
@@ -194,9 +219,6 @@
         //we don't need to submit path's image for now
 //        [param setObject:[AppHelper base64DecodeImage:self.userImage] forKey:kShareImageKey];
     }
-    
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:userPath.pathContent forKey:kPathTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
@@ -215,30 +237,24 @@
     [req startAsynchronous];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request{
-    NSLog(@"done response:%@", request.responseString);
+- (void)requestFinished:(AFHTTPRequestOperation *)operation {
+    self.userImage = nil;
+    [self.textView setText:@""];
+    [AppHelper removeInfoView:self.view];
+    [AppHelper showInfoView:self.view withText:@"Share successfully" withLoading:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
     
-    if(request.tag==tag_req_post_user_share){
-        self.userImage=nil;
-        [self.textView setText:@""];
-        
-        AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-        [appDelegate showMenuView];
-        
-        [AppHelper removeInfoView:self.view];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [appDelegate showMenuView];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self.navigationController selector:@selector(popViewControllerAnimated:) userInfo:nil repeats:NO];
 }
 - (void)requestFailed:(ASIHTTPRequest *)request{
     NSLog(@"fail response:%@", request.responseString);
     [AppHelper removeInfoView:self.view];
-    [AppHelper showInfoView:self.view withText:@"Operation Failed" withLoading:NO];
-    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
+    [AppHelper showInfoView:self.view withText:@"Share Failed" withLoading:NO];
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
 
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
 }
 

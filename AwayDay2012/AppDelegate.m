@@ -11,6 +11,8 @@
 #import "AppConstant.h"
 #import "DBService.h"
 
+#import "APService.h"
+
 #define away_day_user_state_key @"away_day_2012_user_state"
 #define away_day_user_db_name   @"user_db.sqlite"
 
@@ -34,8 +36,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-    
+
+    // Required
+    [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                   UIRemoteNotificationTypeSound |
+                                                   UIRemoteNotificationTypeAlert)];
+    // Required
+    [APService setupWithOption:launchOptions];
     [self copyDatabaseIfNeeded];
     [self openDatabase];
     [NSTimeZone setDefaultTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
@@ -115,6 +122,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // Required
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
 }
 
 #pragma mark - util method
