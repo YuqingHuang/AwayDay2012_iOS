@@ -1,14 +1,16 @@
 //
-// Created by hyq on 8/3/13.
+//  PostShareViewController.h
+//  AwayDay2012
 //
-// To change the template use AppCode | Preferences | File Templates.
+//  Created by xuehai zeng on 12-8-8.
+//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Session.h"
 #import "UserPath.h"
 
-@interface PostShareViewController: UIViewController <UIActionSheetDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface PostShareViewController : UIViewController <UIActionSheetDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property(nonatomic, strong) Session *session;
 @property(nonatomic, strong) UIImage *userImage;

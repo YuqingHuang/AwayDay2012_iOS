@@ -11,16 +11,12 @@
 @interface AppConstant : NSObject
 
 extern NSString const *kUserNameKey;
-extern NSString const *kUserPrivilege;
 extern NSString *kUserPathImageFolder;
 extern NSString *kUserJoinListKey;
-extern NSString const *kUserWeiboIDKey;
-extern NSString const *kUserWeiboTokenKey;
 
 extern NSString const *kServiceLoadSessionList;
 extern NSString *kServiceUserShare;
 extern NSString *kServiceUserPath;
-extern NSString *kServiceSuperUserAuthentication;
 
 extern NSString const *kSessionIDKey;
 extern NSString const *kSessionTitleKey;

@@ -19,9 +19,6 @@
 @property(nonatomic, strong) NSDate *sessionEndTime;
 @property(nonatomic, strong) NSString *sessionAddress;
 
-+ (Session *)createSession:(NSDictionary *)sessionProperies;
-
 -(Session *)createSession:(NSDictionary *)sessionProperies;
 
-- (NSString *)sessionDuration;
 @end

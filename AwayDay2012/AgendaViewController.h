@@ -16,12 +16,8 @@
 #import "TopSessionClockView.h"
 #import "EGORefreshTableHeaderView.h"
 #import "InputNameViewController.h"
+#import "PostShareViewController.h"
 #import "Reminder.h"
-#import "WeiboSDK.h"
-
-@class EditSessionDetailViewController;
-
-@class PostShareViewController;
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate>{
     BOOL loading;
@@ -39,8 +35,6 @@
 @property(nonatomic, strong) EGORefreshTableHeaderView *refreshView;
 @property(nonatomic, strong) InputNameViewController *inputNameViewController;
 @property(nonatomic, strong) PostShareViewController *postShareViewController;
-@property(nonatomic, strong) EditSessionDetailViewController *editSessionDetailViewController;
-
 
 /**
  load the agenda list and their sessions

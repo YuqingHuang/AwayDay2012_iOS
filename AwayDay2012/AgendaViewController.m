@@ -7,13 +7,14 @@
 //
 
 #import "AgendaViewController.h"
+#import "TopSessionClockView.h"
 #import "AppHelper.h"
 #import "AppDelegate.h"
 #import "AppConstant.h"
+#import "UserPath.h"
+#import "ASIHttpRequest.h"
 #import "DBService.h"
 #import "AFJSONRequestOperation.h"
-#import "EditSessionDetailViewController.h"
-#import "PostShareViewController.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -48,13 +49,22 @@
     [self.refreshView setDelegate:self];
     [self.agendaTable addSubview:self.refreshView];
     [self.refreshView refreshLastUpdatedDate];
-
-    [self handleFirstTimeOfLaunch];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
+    if (userName == nil || userName.length == 0) {
+        //1st lauch, ask for user's name
+        if (self.inputNameViewController == nil) {
+            InputNameViewController *invc = [[InputNameViewController alloc] init];
+            self.inputNameViewController = invc;
+        }
+        [self presentModalViewController:self.inputNameViewController animated:NO];
+    }
 
     if (self.agendaList == nil) {
         NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -77,27 +87,6 @@
 }
 
 #pragma mark - util method
-- (void)handleFirstTimeOfLaunch {
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];//user info stores in appDelegate.
-    NSString *userName = [appDelegate.userState objectForKey:kUserNameKey];
-    if (userName == nil || userName.length == 0) {
-        //1st lauch, ask for user's name
-        if (self.inputNameViewController == nil) {
-            InputNameViewController *inputNameViewController = [[InputNameViewController alloc] init];
-            self.inputNameViewController = inputNameViewController;
-        }
-        [self presentViewController:self.inputNameViewController animated:NO completion:nil];
-    } else {
-        //alert welcome
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"WELCOME"
-                                                        message:[NSString stringWithFormat:@"Hi, %@", userName]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
 - (void)removeInfoView {
     [AppHelper removeInfoView:self.view];
 }
@@ -123,21 +112,20 @@
             [agenda setSessions:list];
         }
         [agenda.sessions addObject:session];
-        if (sessionDateStr) {
-            [tempAgendaMapping setObject:agenda forKey:sessionDateStr];
-        }
+        [tempAgendaMapping setObject:agenda forKey:sessionDateStr];
     }
 
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
 
-    [self getAgendaListFromServerWithLoading:YES];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
 }
 
-- (void)getAgendaListFromServerWithLoading:(BOOL)showLoading {
+- (void)getAgendaListFromServer:(NSString *)urlString showLoading:(BOOL)showLoading {
     loading = YES;
 
-    NSURL *url = [NSURL URLWithString:(NSString *) kServiceLoadSessionList];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+
     AFJSONRequestOperation *requestOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest
                                                                                                success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                                                                                    NSLog(@"success response:%@", JSON);
@@ -149,6 +137,11 @@
                                                                                                }
     ];
     [requestOperation start];
+//    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+//    [request setDelegate:self];
+//    [request setTimeOutSeconds:10.0f];
+//    [request setTag:tag_req_load_session_list];
+//    [request startAsynchronous];
 
     if (showLoading) {
         [AppHelper showInfoView:self.view withText:@"Loading..." withLoading:YES];
@@ -216,7 +209,7 @@
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"HH:mm"];
-    [self.topSessionDurationLabel setText:session.sessionDuration];
+    [self.topSessionDurationLabel setText:[NSString stringWithFormat:@"%@ ~ %@", [dateFormatter stringFromDate:session.sessionStartTime], [dateFormatter stringFromDate:session.sessionEndTime]]];
 
     NSTimeInterval interval = [session.sessionStartTime timeIntervalSinceDate:today];
 
@@ -270,7 +263,7 @@
     [sessionDuration setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionDuration setShadowColor:[UIColor colorWithRed:120 / 255.0 green:120 / 255.0 blue:120 / 255.0 alpha:120 / 255.0]];
     [sessionDuration setShadowOffset:CGSizeMake(-0.1f, -0.1f)];
-    [sessionDuration setText:session.sessionDuration];
+    [sessionDuration setText:[NSString stringWithFormat:@"%@ ~ %@", [dateFormatter stringFromDate:session.sessionStartTime], [dateFormatter stringFromDate:session.sessionEndTime]]];
     [cell addSubview:sessionDuration];
 }
 
@@ -306,11 +299,13 @@
     [detailView addSubview:sessionSpeaker];
     y += sessionSpeaker.frame.size.height;
 
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
     UILabel *sessionTime = [[UILabel alloc] initWithFrame:CGRectMake(8, y, 110, 16)];
     [sessionTime setBackgroundColor:[UIColor clearColor]];
     [sessionTime setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionTime setTextColor:[UIColor colorWithRed:120 / 255.0 green:120 / 255.0 blue:120 / 255.0 alpha:1.0f]];
-    [sessionTime setText:[NSString stringWithFormat:@"Time: %@", session.sessionDuration]];
+    [sessionTime setText:[NSString stringWithFormat:@"Time: %@ ~ %@", [formatter stringFromDate:session.sessionStartTime], [formatter stringFromDate:session.sessionEndTime]]];
     [detailView addSubview:sessionTime];
 
     y += sessionTime.frame.size.height;
@@ -363,20 +358,11 @@
     [remind addTarget:self action:@selector(remindButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:remind];
 
-    //Superuser can edit the details, other users can share it via weibo. So, this button is different due to the kind of user.
-    if ([[AppDelegate thisUserPrivilege] isEqualToString:@"superuser"]) {
-        UIButton *edit = [UIButton buttonWithType:UIButtonTypeCustom];
-        [edit setFrame:CGRectMake(234, y, 52, 32)];
-        [edit setImage:[UIImage imageNamed:@"doc_edit_icon.png"] forState:UIControlStateNormal];
-        [edit addTarget:self action:@selector(editButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [detailView addSubview:edit];
-    } else {
-        UIButton *share = [UIButton buttonWithType:UIButtonTypeCustom];
-        [share setFrame:CGRectMake(234, y, 52, 32)];
-        [share setImage:[UIImage imageNamed:@"share_button.png"] forState:UIControlStateNormal];
-        [share addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [detailView addSubview:share];
-    }
+    UIButton *share = [UIButton buttonWithType:UIButtonTypeCustom];
+    [share setFrame:CGRectMake(234, y, 52, 32)];
+    [share setImage:[UIImage imageNamed:@"share_button.png"] forState:UIControlStateNormal];
+    [share addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [detailView addSubview:share];
 
     CATransition *transition = [CATransition animation];
     transition.duration = 0.15f;
@@ -453,16 +439,6 @@
 }
 
 - (IBAction)shareButtonPressed:(id)sender {
-    if ([AppDelegate thisUserWeiboSSO]) {
-        [self postToOwnWeibo];
-    } else {
-        [self ssoPage];
-    }
-//    [self postToPublicPage];
-
-}
-
-- (void)postToOwnWeibo {
     if (self.postShareViewController == nil) {
         PostShareViewController *psvc = [[PostShareViewController alloc] initWithNibName:@"PostShareViewController" bundle:nil];
         self.postShareViewController = psvc;
@@ -472,42 +448,6 @@
     Session *session = [agenda.sessions objectAtIndex:self.selectedCell.row];
     [self.postShareViewController setSession:session];
     [self.navigationController pushViewController:self.postShareViewController animated:YES];
-}
-
-- (void)ssoPage {
-    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-
-    request.redirectURI = kRedirectURI;
-//    request.scope = @"email,direct_messages_write";
-//    request.userInfo = @{@"SSO_From" : @"SendMessageToWeiboViewController",
-//            @"Other_Info_1" : [NSNumber numberWithInt:123],
-//            @"Other_Info_2" : @[@"obj1", @"obj2"],
-//            @"Other_Info_3" : @{@"key1" : @"obj1", @"key2" : @"obj2"}};
-    [WeiboSDK sendRequest:request];
-}
-
-- (void)postToPublicPage {
-    if (self.postShareViewController == nil) {
-        PostShareViewController_public *psvc = [[PostShareViewController_public alloc] initWithNibName:@"PostShareViewController" bundle:nil];
-        self.postShareViewController = psvc;
-    }
-
-    Agenda *agenda = [self.agendaList objectAtIndex:self.selectedCell.section];
-    Session *session = [agenda.sessions objectAtIndex:self.selectedCell.row];
-    [self.postShareViewController setSession:session];
-    [self.navigationController pushViewController:self.postShareViewController animated:YES];
-}
-
-- (IBAction)editButtonPressed:(id)sender {
-    if (self.editSessionDetailViewController == nil) {
-        EditSessionDetailViewController *evc = [[EditSessionDetailViewController alloc] initWithNibName:@"EditSessionDetailViewController" bundle:nil];
-        self.editSessionDetailViewController = evc;
-    }
-
-    Agenda *agenda = [self.agendaList objectAtIndex:self.selectedCell.section];
-    Session *session = [agenda.sessions objectAtIndex:self.selectedCell.row];
-    [self.editSessionDetailViewController setSession:session];
-    [self.navigationController pushViewController:self.editSessionDetailViewController animated:YES];
 }
 
 #pragma mark - UITableView method
@@ -632,7 +572,7 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view {
     loading = YES;
-    [self getAgendaListFromServerWithLoading:YES ];
+    [self getAgendaListFromServer:(NSString *) kServiceLoadSessionList showLoading:YES];
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view {
@@ -672,7 +612,6 @@
     [AppHelper showInfoView:self.view withText:@"Failed" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
-
 /*
 - (void)requestFinished:(ASIHTTPRequest *)request {
 //    NSLog(@"%@", request.responseString);

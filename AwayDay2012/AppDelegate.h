@@ -14,9 +14,9 @@
 #import "UserPathViewController.h"
 #import <sqlite3.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, WeiboSDKDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property(strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow *window;
 @property(nonatomic, strong) UINavigationController *navigationController;
 @property(nonatomic, strong) AgendaViewController *agendaViewController;
 @property(nonatomic, strong) SettingViewController *settingViewController;
@@ -28,28 +28,20 @@
 /**
  save user's state to the NSUserDefault
  */
-- (void)saveUserState;
-
-+ (NSString *)thisUserPrivilege;
-
-+ (NSString *)thisUserWeiboSSO;
-
-+ (AppDelegate *)thisAppDelegate;
+-(void)saveUserState;
 
 /*
  hide the bottom menu view
  */
-- (void)hideMenuView;
+-(void)hideMenuView;
 
 /**
  show the bottom menu view
  */
-- (void)showMenuView;
+-(void)showMenuView;
 
-- (NSString *)getDBPath;
-
-- (void)copyDatabaseIfNeeded;
-
-- (void)openDatabase;
+- (NSString *) getDBPath;
+- (void) copyDatabaseIfNeeded;
+-(void)openDatabase;
 
 @end

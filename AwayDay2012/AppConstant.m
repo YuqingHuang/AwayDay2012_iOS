@@ -11,11 +11,8 @@
 @implementation AppConstant
 
 NSString const *kUserNameKey=@"username";
-NSString const *kUserPrivilege=@"superuser";
 NSString *kUserPathImageFolder=@"user_path_image";
 NSString *kUserJoinListKey=@"user_join_list";
-NSString const *kUserWeiboIDKey=@"user_weibo_ID";
-NSString const *kUserWeiboTokenKey=@"user_weibo_token_ID";
 
 NSString const *kSessionIDKey=@"session_id";
 NSString const *kSessionTitleKey=@"settion_title";
@@ -37,7 +34,5 @@ NSString const *kServiceLoadSessionList=@"http://awayday2012.herokuapp.com/sessi
 //NSString const *kServiceLoadSessionList=@"http://localhost:3000/sessions_grouped_by_date";
 NSString *kServiceUserPath=@"http://awayday2012.herokuapp.com/moment";
 NSString *kServiceUserShare=@"http://awayday2012.sinaapp.com/share.php";
-NSString *kServiceSuperUserAuthentication=@"http://localhost:3000/superuser";
-
 
 @end
