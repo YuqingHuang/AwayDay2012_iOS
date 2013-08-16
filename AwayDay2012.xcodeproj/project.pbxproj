@@ -62,6 +62,9 @@
 		492B859615EF2C0B00802F8F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 492B859515EF2C0B00802F8F /* Default.png */; };
 		492B859915EF2C0F00802F8F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492B859815EF2C0F00802F8F /* Default@2x.png */; };
 		492D43D717B8FF0B0082C814 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 492D43D517B8FF0B0082C814 /* libPushSDK.a */; };
+		492D43DA17B8FF960082C814 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492D43D917B8FF960082C814 /* CoreFoundation.framework */; };
+		492D43DC17B8FF9E0082C814 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492D43DB17B8FF9E0082C814 /* CoreTelephony.framework */; };
+		492D43DE17B9BD870082C814 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 492D43DD17B9BD870082C814 /* PushConfig.plist */; };
 		4934F9E115CA668600427597 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9DE15CA65CE00427597 /* EGORefreshTableHeaderView.m */; };
 		4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E215CA671700427597 /* blackArrow.png */; };
 		4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E315CA671700427597 /* blackArrow@2x.png */; };
@@ -234,6 +237,9 @@
 		492B859815EF2C0F00802F8F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		492D43D317B8FF0B0082C814 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		492D43D517B8FF0B0082C814 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
+		492D43D917B8FF960082C814 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		492D43DB17B8FF9E0082C814 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		492D43DD17B9BD870082C814 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		4934F9DD15CA65CE00427597 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		4934F9DE15CA65CE00427597 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		4934F9E215CA671700427597 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -325,6 +331,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				492D43DC17B8FF9E0082C814 /* CoreTelephony.framework in Frameworks */,
+				492D43DA17B8FF960082C814 /* CoreFoundation.framework in Frameworks */,
 				445F4CD217AAB29A00EE4BA5 /* libWeiboSDK.a in Frameworks */,
 				490B91E015D4B60E00539E2A /* libsqlite3.dylib in Frameworks */,
 				493697CA15C8D86400941C94 /* QuartzCore.framework in Frameworks */,
@@ -518,6 +526,8 @@
 		49168F4215C769D200DEA67C = {
 			isa = PBXGroup;
 			children = (
+				492D43DB17B8FF9E0082C814 /* CoreTelephony.framework */,
+				492D43D917B8FF960082C814 /* CoreFoundation.framework */,
 				444623B417ACC7CD00C4987A /* WeiboSDK.bundle */,
 				49EEAC53179FC56700548645 /* libASILib.a */,
 				492B859815EF2C0F00802F8F /* Default@2x.png */,
@@ -596,6 +606,7 @@
 				49EC240315CA129000DF9B34 /* Image */,
 				49168F8715C76A6700DEA67C /* XIB */,
 				49168F5815C769D300DEA67C /* Supporting Files */,
+				492D43DD17B9BD870082C814 /* PushConfig.plist */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -897,6 +908,7 @@
 				49464D0B179ACEE4007D7217 /* EditSessionDetailViewController.xib in Resources */,
 				3686780B2C3F77F040A1E291 /* close.png in Resources */,
 				3686794C4619352E79992BFE /* close@2x.png in Resources */,
+				492D43DE17B9BD870082C814 /* PushConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,8 +1031,8 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ThoughtWorks Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ThoughtWorks Inc";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1035,10 +1047,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PROVISIONING_PROFILE = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "C99A9789-EA3C-4E2F-896F-D4DE1D0FB1BB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C99A9789-EA3C-4E2F-896F-D4DE1D0FB1BB";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/ExternalLibs/JPush/**";
 			};
 			name = Debug;
 		};
@@ -1059,11 +1072,12 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/ExternalLibs/JPush/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1090,8 +1104,8 @@
 					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/JPush\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
+				PROVISIONING_PROFILE = "D047C67D-5BB2-422D-9CCE-B73D0806F1F6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D047C67D-5BB2-422D-9CCE-B73D0806F1F6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1118,8 +1132,8 @@
 					"\"$(SRCROOT)/AwayDay2012/ExternalLibs/JPush\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E52CD57C-D397-4330-BA5A-68B8C763FD72";
+				PROVISIONING_PROFILE = "D047C67D-5BB2-422D-9CCE-B73D0806F1F6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D047C67D-5BB2-422D-9CCE-B73D0806F1F6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

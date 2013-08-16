@@ -20,7 +20,9 @@
 #define text_length_limit   140
 #define tag_req_post_user_share 1001
 
-@implementation PostShareViewController
+@implementation PostShareViewController {
+    AppDelegate *appDelegate;
+}
 @synthesize session = _session;
 @synthesize textView = _textView;
 @synthesize textCountLabel = _textCountLabel;
@@ -45,7 +47,7 @@
         [self.sessionTextLabel setText:[NSString stringWithFormat:@"For %@", self.session.sessionTitle]];
     }
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate hideMenuView];
 
     [self.textCountLabel setText:[NSString stringWithFormat:@"%d/%d", self.textView.text.length, text_length_limit]];
@@ -56,11 +58,12 @@
     self.userImage = nil;
     [self.textView setText:@""];
     [self.navigationController popViewControllerAnimated:YES];
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     [appDelegate showMenuView];
 }
 
 - (IBAction)sendButtonPressed:(id)sender {
+    [AppHelper showInfoView:self.view];
+    
     //to send the share
     NSString *content = self.textView.text;
     if (content.length == 0 && self.userImage == nil) {
@@ -69,13 +72,22 @@
         return;
     }
 
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/2/statuses/update.json"];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
-
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     NSString *accessToken = [appDelegate.userState objectForKey:kUserWeiboTokenKey];
-    NSDictionary *params = @{@"status" : [self messageToShare:content].text,
-            @"access_token" : accessToken};
+
+    NSURL *url;
+    NSDictionary *params;
+    WBMessageObject *messageToShare = [self messageToShare:content];
+    if (messageToShare.imageObject) {
+        url = [NSURL URLWithString:@"https://upload.api.weibo.com/2/statuses/upload.json"];
+        params = @{@"status" : messageToShare.text,
+                @"access_token" : accessToken,
+                @"pic" : messageToShare.imageObject};
+    } else {
+        url = [NSURL URLWithString:@"https://api.weibo.com/2/statuses/update.json"];
+        params = @{@"status" : messageToShare.text,
+                @"access_token" : accessToken};
+    }
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
     [httpClient postPath:nil parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
@@ -84,38 +96,12 @@
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
         [self requestFailed:operation];
     }];
-    /*  WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self messageToShare:content]];
-      request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
-              @"Other_Info_1": [NSNumber numberWithInt:123],
-              @"Other_Info_2": @[@"obj1", @"obj2"],
-              @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
-      request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
-
-      [WeiboSDK sendRequest:request];*/
-
-/*
-    [self postUserShare2Server];
-
-    UserPath *userPath=[[UserPath alloc]init];
-    [userPath setPathID:[AppHelper generateUDID]];
-    [userPath setPathContent:content];
-    if(self.userImage!=nil){
-        [userPath setPathImage:self.userImage];
-        [userPath setHasImage:[NSNumber numberWithBool:YES]];
-    }else{
-        [userPath setHasImage:[NSNumber numberWithBool:NO]];
-    }
-    [userPath save];
-    [self postUserPath2Server:userPath];
-
-    [self.textView resignFirstResponder];
-    [AppHelper showInfoView:self.view];*/
 }
 
 - (WBMessageObject *)messageToShare:(NSString *)inputText {
     WBMessageObject *message = [WBMessageObject message];
 
-    message.text = [NSString stringWithFormat:@"#TWAwayDay2013# %@", inputText];
+    message.text = [NSString stringWithFormat:@"#TWAwayDay2013# #%@# %@", self.session.sessionTitle, inputText];
 
     if (self.userImage) {
         WBImageObject *image = [WBImageObject object];
@@ -192,11 +178,11 @@
         }
     }
     [self.imageIconView setAlpha:1.0f];
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissModalViewControllerAnimated:YES];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - util method
@@ -213,7 +199,6 @@
         [param setObject:[AppHelper base64EncodeImage:self.userImage] forKey:kShareImageKey];
     }
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
     NSString *timestamp = [NSString stringWithFormat:@"%ld", (long) interval];
 
@@ -241,8 +226,6 @@
 //        [param setObject:[AppHelper base64DecodeImage:self.userImage] forKey:kShareImageKey];
     }
 
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:userPath.pathContent forKey:kPathTextKey];
     [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
@@ -262,27 +245,21 @@
 }
 
 - (void)requestFinished:(AFHTTPRequestOperation *)operation {
-        self.userImage = nil;
-        [self.textView setText:@""];
+    self.userImage = nil;
+    [self.textView setText:@""];
     [AppHelper removeInfoView:self.view];
     [AppHelper showInfoView:self.view withText:@"Share successfully" withLoading:NO];
-        [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
-
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        [appDelegate showMenuView];
-
-        
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
     
-  
-        [NSTimer scheduledTimerWithTimeInterval:2.0f target:self.navigationController selector:@selector(popViewControllerAnimated:) userInfo:nil repeats:NO];
+    [appDelegate showMenuView];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self.navigationController selector:@selector(popViewControllerAnimated:) userInfo:nil repeats:NO];
 }
 
 - (void)requestFailed:(AFHTTPRequestOperation *)operation {
     [AppHelper removeInfoView:self.view];
     [AppHelper showInfoView:self.view withText:@"Share Failed" withLoading:NO];
-    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
-
 
 - (void)viewDidUnload {
     [super viewDidUnload];
