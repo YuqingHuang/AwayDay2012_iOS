@@ -307,7 +307,7 @@
 				49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */,
 				49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */,
 				49EEAC54179FC56700548645 /* libASILib.a in Frameworks */,
-				492D43D717B8FF0B0082C814 /* libPushSDK.a in Frameworks */,
+				492D43D717B8FF0B0082C814 /* libPushSDK.a in Frameworks */);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		49D3243F160C575300B9CE19 /* Frameworks */ = {
